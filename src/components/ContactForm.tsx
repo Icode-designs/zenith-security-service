@@ -14,7 +14,7 @@ const ContactForm = () => {
   const [selectedValue, setSelectedValue] = useState("option1");
   return (
     <SectionSwitcher>
-      <StyledForm>
+      <StyledForm action="https://formspree.io/f/meoppppb" method="POST">
         <h3>Get Professional Security Services Today</h3>
         <FlexBox $gap={16} $variant="secondary">
           <StyledInput type="text" name="first-name" placeholder="First Name" />

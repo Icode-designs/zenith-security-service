@@ -41,6 +41,17 @@ export const StyledFooterContent = styled.div`
         }
       }
     }
+
+    &:nth-of-type(2) {
+      li {
+        a {
+          transition: none;
+          color: inherit;
+          padding: 0;
+          text-transform: capitalize;
+        }
+      }
+    }
     h4 {
       margin-bottom: ${pxTorem(24)};
     }
@@ -53,7 +64,7 @@ export const StyledFooterContent = styled.div`
     ul {
       text-align: left;
       &:nth-of-type(1) {
-        button {
+        a {
           justify-self: start;
         }
       }
@@ -67,7 +78,7 @@ export const StyledFooterContent = styled.div`
     ul {
       text-align: left;
       &:nth-of-type(1) {
-        button {
+        a {
           justify-self: start;
         }
       }

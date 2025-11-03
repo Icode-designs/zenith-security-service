@@ -10,6 +10,7 @@ import Link from "next/link";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import { SERVICES_LIST } from "@/utils/data";
 
 const Footer = () => {
   return (
@@ -31,10 +32,13 @@ const Footer = () => {
         </ul>
         <ul>
           <h4>our services</h4>
-          <li>fire watch guards</li>
-          <li>commercial security</li>
-          <li>hotel security</li>
-          <li>armed & unarmed guards</li>
+          {SERVICES_LIST.map((service, i) => (
+            <li key={i}>
+              <StyledLink href={`/services/service/${service.id}}`}>
+                {service.name}
+              </StyledLink>
+            </li>
+          ))}
         </ul>
 
         <ul>

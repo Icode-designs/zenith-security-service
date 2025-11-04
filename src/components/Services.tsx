@@ -6,8 +6,6 @@ import {
 } from "@/styles/components/Homepage.styles";
 import { SERVICES_LIST } from "@/utils/data";
 import ServiceCard from "./ui/ServiceCard";
-import { StyledLink } from "@/styles/components/Ui.styles";
-
 interface Props {
   alternate?: boolean;
 }
@@ -42,17 +40,6 @@ const Services = ({ alternate }: Props) => {
               description={service.description}
             />
           ))}
-          <li>
-            <p>
-              Zenith Protective Services is committed to protecting your people,
-              property, and business. Our security experts provide affordable,
-              professional, and reliable protection 24/7—so you can focus on
-              what matters most.
-            </p>
-            <StyledLink href="/contact" $variant="secondary">
-              <p>get a free quote</p>
-            </StyledLink>
-          </li>
         </StyledServiceCardGrid>
       </StyledServices>
     </SectionSwitcher>

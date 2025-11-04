@@ -99,8 +99,8 @@ h2{
     }
 
     @media ${QUERY.DESKTOP} {
-    font-size: ${pxTorem(42)}; 
-    line-height: ${pxTorem(55)};
+    font-size: ${pxTorem(38)}; 
+    line-height: ${pxTorem(48)};
     }
 }
 

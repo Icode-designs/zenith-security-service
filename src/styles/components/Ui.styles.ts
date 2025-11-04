@@ -3,6 +3,7 @@ import pxTorem from "@/utils/helpers/pxTorem";
 import styled, { css } from "styled-components";
 import QUERY from "../Breakpoints.styles";
 import Link from "next/link";
+import Image from "next/image";
 
 export const StyledLink = styled(Link)<{
   $variant?: "primary" | "secondary" | "tertiary";
@@ -60,9 +61,10 @@ export const StyledMainWrapper = styled.main`
   }
 `;
 
-export const StyledLogo = styled.h3`
-  color: var(--col-100);
-  font-size: ${pxTorem(32)};
+export const StyledLogo = styled(Image)`
+  height: ${pxTorem(70)};
+  width: fit-content;
+  object-fit: contain;
 `;
 
 export const FlexBox = styled.div<{ $variant?: "secondary"; $gap?: number }>`

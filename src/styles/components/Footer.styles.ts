@@ -17,6 +17,7 @@ export const StyledFooterContent = styled.div`
   max-width: ${pxTorem(1200)};
   margin: 0 auto;
   padding: ${pxTorem(47)};
+
   ul {
     color: var(--col-100);
     text-align: center;
@@ -58,9 +59,13 @@ export const StyledFooterContent = styled.div`
   }
   @media (min-width: 768px) {
     justify-items: stretch;
-    > h3 {
-      justify-self: start;
+
+    > a {
+      > img {
+        height: ${pxTorem(150)};
+      }
     }
+
     ul {
       text-align: left;
       &:nth-of-type(1) {
@@ -74,7 +79,6 @@ export const StyledFooterContent = styled.div`
   @media ${QUERY.TABLET} {
     display: flex;
     justify-content: space-between;
-
     ul {
       text-align: left;
       &:nth-of-type(1) {

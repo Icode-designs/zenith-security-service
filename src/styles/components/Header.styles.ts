@@ -15,8 +15,11 @@ export const StyledHeader = styled.header<{ $isOpen?: boolean }>`
     margin: 0 auto;
 
     > div {
+      display: flex;
+      justify-content: space-between;
       color: var(--col-100);
       align-items: center;
+
       > a svg {
         font-size: ${pxTorem(24)};
         transform: translateY(${pxTorem(5)});

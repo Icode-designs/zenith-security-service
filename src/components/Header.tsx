@@ -8,7 +8,6 @@ import { BsFillTelephoneOutboundFill } from "react-icons/bs";
 import { FlexBox, StyledLink } from "@/styles/components/Ui.styles";
 import Link from "next/link";
 import { NAV_CONTEXT } from "@/providers/NavProvider";
-import { p } from "framer-motion/client";
 
 const Header = () => {
   const isTablet = useMedia("TABLET");

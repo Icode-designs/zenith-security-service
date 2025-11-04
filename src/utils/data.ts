@@ -8,6 +8,8 @@ import hotelGuard from "@/assets/hotelSecurity.jpg";
 import hotelGuardHero from "@/assets/hotelGuard2.jpg";
 import armedGuard from "@/assets/armedGuards.jpg";
 import armedGuardHero from "@/assets/armedGuard2.jpg";
+import constructionSec from "@/assets/constructionSec.jpeg";
+import constructionSec1 from "@/assets/constructionSec1.jpeg";
 
 interface FAQ {
   question: string;
@@ -81,6 +83,52 @@ export const SERVICES_LIST: SERVICETYPE[] = [
     ],
   },
   {
+    id: "construction-site-security",
+    name: "Construction Site Security",
+    description:
+      "Our Construction Site Security Guards protect your equipment, materials, and workers from theft, vandalism, and unauthorized access, ensuring a safe and compliant job site around the clock.",
+    intro: {
+      title: "Professional Construction Site Security Guards",
+      description:
+        "Construction sites are high-risk environments that require constant vigilance. Our Construction Site Security Guards provide 24/7 protection to prevent theft, control site access, and ensure worker safety. We deploy trained guards who patrol perimeters, monitor entry points, and secure valuable materials and equipment. Whether it’s during active building hours or overnight, our guards maintain detailed activity reports and communicate regularly with site supervisors. From small projects to large-scale developments, we tailor our services to fit your site’s specific layout and security needs—minimizing losses, deterring intruders, and helping projects stay on schedule.",
+    },
+    url: [constructionSec.src, constructionSec1.src],
+    questioniar: {
+      question: "Why Do Construction Companies Need Our Site Security?",
+      answer:
+        "Construction sites often contain valuable tools, machinery, and materials that attract theft and vandalism. With Zenith Protective Services’ Construction Site Security Guards on duty, you gain constant monitoring and rapid response capabilities to safeguard your assets. Our guards enforce strict access control, verify worker credentials, and patrol critical zones to detect suspicious activity before it escalates. In addition to crime prevention, our team also helps maintain compliance with safety regulations and reduces the risk of accidents caused by unauthorized personnel. By choosing our construction site security service, you ensure your project stays protected, efficient, and on track.",
+    },
+    offer: {
+      title: "Comprehensive Security Solutions for Construction Sites",
+      description:
+        "Every construction site faces unique challenges, from theft and vandalism to safety hazards and unauthorized access. Our Construction Site Security Guards offer tailored solutions to protect your property day and night. We provide on-site patrols, CCTV monitoring, vehicle inspections, and controlled access points to ensure complete perimeter protection. With Zenith Protective Services, you get proactive, reliable, and highly visible security presence that keeps your site secure and your workers confident. Partner with us to reduce losses, prevent delays, and maintain a safe, compliant construction environment.",
+    },
+    FAQ: [
+      {
+        question:
+          "Do you provide overnight and weekend construction site security?",
+        answer:
+          "Yes. We provide 24/7 coverage, including nights, weekends, and holidays, ensuring your site remains protected at all times.",
+      },
+      {
+        question: "Can guards monitor heavy equipment and materials?",
+        answer:
+          "Absolutely. Our guards patrol areas containing valuable machinery and materials, logging their inspections to prevent theft or tampering.",
+      },
+      {
+        question: "Do your guards handle access control?",
+        answer:
+          "Yes. Our Construction Site Security Guards verify worker IDs, manage visitor logs, and monitor entry and exit points to prevent unauthorized access.",
+      },
+      {
+        question: "Can you provide temporary or long-term security coverage?",
+        answer:
+          "We offer both. Whether you need short-term protection during critical project phases or continuous coverage throughout your build, we can adjust our services accordingly.",
+      },
+    ],
+  },
+
+  {
     id: "hospital-security",
     name: "Hospital Security",
     description:
@@ -133,7 +181,7 @@ export const SERVICES_LIST: SERVICETYPE[] = [
     intro: {
       title: "Protecting Businesses with Confidence",
       description:
-        "From small businesses to corporate buildings, our commercial security guards help prevent theft, vandalism, and unauthorized access. We enforce company policies, monitor surveillance systems, and perform regular patrols—ensuring your employees and assets are always protected. Commercial properties face constant risks—from theft and vandalism to unauthorized access and workplace disruptions. Zenith Protective Services provides professional Commercial Security Guards who safeguard entrances, monitor business environments, and ensure the safety of staff, customers, and assets. Our team is trained to respond quickly to emergencies, deter criminal activity, and maintain a calm, professional presence—even in high-pressure situations. From office buildings to retail centers and warehouses, we keep every corner of your business secure. With Zenith Protective Services on-site, business owners can focus on growth and operations while we focus on delivering reliable protection.",
+        "From small businesses to corporate buildings, our commercial security guards help prevent theft, vandalism, and unauthorized access. We enforce company policies, monitor surveillance systems, and perform regular patrols—ensuring your employees and assets are always protected. Commercial properties face constant risks, from theft and vandalism to unauthorized access and workplace disruptions. Zenith Protective Services provides professional Commercial Security Guards who safeguard entrances, monitor business environments, and ensure the safety of staff, customers, and assets. Our team is trained to respond quickly to emergencies, deter criminal activity, and maintain a calm, professional presence—even in high-pressure situations. From office buildings to retail centers and warehouses, we keep every corner of your business secure. With Zenith Protective Services on-site, business owners can focus on growth and operations while we focus on delivering reliable protection.",
     },
     url: [bussinessGuard.src, bussinessGuardHero.src],
     questioniar: {

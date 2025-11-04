@@ -59,11 +59,11 @@ const Footer = () => {
       </StyledFooterContent>
       <StyledAccreditation>
         <div>
-          <FlexBox $gap={10}>
+          {/* <FlexBox $gap={10}>
             <AiFillInstagram />
             <FaFacebookSquare />
             <FaTwitter />
-          </FlexBox>
+          </FlexBox> */}
           <p>
             © 2025 Zenith Protective Services Inc. | All Rights Reserved |
             Professional Security Solutions 24/7

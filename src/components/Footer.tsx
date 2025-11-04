@@ -34,7 +34,7 @@ const Footer = () => {
           <h4>our services</h4>
           {SERVICES_LIST.map((service, i) => (
             <li key={i}>
-              <StyledLink href={`/services/service/${service.id}}`}>
+              <StyledLink href={`/services/service/${service.id}`}>
                 {service.name}
               </StyledLink>
             </li>

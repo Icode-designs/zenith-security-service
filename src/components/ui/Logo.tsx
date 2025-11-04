@@ -1,6 +1,6 @@
 import { StyledLogo } from "@/styles/components/Ui.styles";
 import React from "react";
-import logo from "@/assets/1x/logo.png";
+import logo from "@/assets/logo.png";
 import Link from "next/link";
 
 const Logo = () => {
@@ -8,8 +8,8 @@ const Logo = () => {
     <Link href="/">
       <StyledLogo
         src={logo.src}
-        width={50}
-        height={70}
+        width={500}
+        height={700}
         alt="Zenith protective service logo"
       />
     </Link>

@@ -55,8 +55,9 @@ export const StyledServiceDetailsHero = styled.div`
   img {
     width: 70%;
     height: auto;
+    max-height: ${pxTorem(560)};
     object-fit: cover;
-    object-position: center;
+    object-position: top;
     border-radius: ${pxTorem(12)};
   }
   a {

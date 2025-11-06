@@ -4,7 +4,6 @@ import React from "react";
 import cctv from "@/assets/cctyMonitor.jpg";
 import { StyledIntro } from "@/styles/components/Homepage.styles";
 import SectionSwitcher from "./SectionWrapper";
-import Link from "next/link";
 
 const HomeIntro = () => {
   return (

@@ -2,7 +2,6 @@ import { StyledServiceCard } from "@/styles/components/Homepage.styles";
 import { StyledLink } from "@/styles/components/Ui.styles";
 import trimTextLength from "@/utils/helpers/trimText";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 

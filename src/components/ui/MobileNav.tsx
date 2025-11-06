@@ -1,7 +1,7 @@
 "use client";
 import { NAV_CONTEXT } from "@/providers/NavProvider";
 import { StyledMobileNav } from "@/styles/components/Header.styles";
-import { FlexBox, StyledLink } from "@/styles/components/Ui.styles";
+import { StyledLink } from "@/styles/components/Ui.styles";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { BsFillTelephoneOutboundFill } from "react-icons/bs";

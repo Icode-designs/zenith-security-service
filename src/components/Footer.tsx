@@ -5,11 +5,8 @@ import {
   StyledFooterContent,
 } from "@/styles/components/Footer.styles";
 import Logo from "./ui/Logo";
-import { FlexBox, StyledLink } from "@/styles/components/Ui.styles";
+import { StyledLink } from "@/styles/components/Ui.styles";
 import Link from "next/link";
-import { AiFillInstagram } from "react-icons/ai";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
 import { SERVICES_LIST } from "@/utils/data";
 
 const Footer = () => {

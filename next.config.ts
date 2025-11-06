@@ -31,6 +31,11 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: [
           {
+            key: "Content-Security-Policy",
+            value:
+              "frame-ancestors 'self' https://bonaventure-dev.vercel.app/;",
+          },
+          {
             key: "X-DNS-Prefetch-Control",
             value: "on",
           },

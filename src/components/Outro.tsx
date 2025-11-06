@@ -7,7 +7,6 @@ import React from "react";
 import gridImg1 from "@/assets/gridImg1.png";
 import gridImg2 from "@/assets/gridImg2.png";
 import gridImg3 from "@/assets/gridImg3.png";
-import Link from "next/link";
 import { StyledLink } from "@/styles/components/Ui.styles";
 
 const Outro = () => {

@@ -10,7 +10,6 @@ import commercialSecurity from "@/assets/commercialGuards2.jpg";
 import armedSecurity from "@/assets/armedGuards.jpg";
 import fireService from "@/assets/fireService.jpg";
 import Image from "next/image";
-import Link from "next/link";
 import { StyledLink } from "@/styles/components/Ui.styles";
 
 const HomeHeroContent = () => {

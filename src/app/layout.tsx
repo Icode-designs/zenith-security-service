@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://zenith-security-service.vercel.app/",
+    url: "https://www.zenithprotectiveservice.site/",
     siteName: "Zenith Protective Services",
     title:
       "Licensed Security Guards & 24/7 Protection Services | Zenith Protective Services",
@@ -103,9 +103,9 @@ export const metadata: Metadata = {
 
   // Alternate Languages (if you add Spanish version later)
   alternates: {
-    canonical: "https://zenith-security-service.vercel.app/",
+    canonical: "https://www.zenithprotectiveservice.site/",
     // languages: {
-    //   'es': 'https://zenith-security-service.vercel.app/es',
+    //   'es': 'https://www.zenithprotectiveservice.site/es',
     // },
   },
 
@@ -133,10 +133,10 @@ const structuredData = {
   "@graph": [
     {
       "@type": "SecurityService",
-      "@id": "https://zenith-security-service.vercel.app/#organization",
+      "@id": "https://www.zenithprotectiveservice.site/#organization",
       name: "Zenith Protective Services Inc.",
       alternateName: "Zenith Security Agency",
-      url: "https://zenith-security-service.vercel.app/",
+      url: "https://www.zenithprotectiveservice.site/",
       logo: {
         "@type": "ImageObject",
         url: logo.src,
@@ -250,16 +250,16 @@ const structuredData = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://zenith-security-service.vercel.app/#website",
-      url: "https://zenith-security-service.vercel.app/",
+      "@id": "https://www.zenithprotectiveservice.site/#website",
+      url: "https://www.zenithprotectiveservice.site/",
       name: "Zenith Protective Services",
       publisher: {
-        "@id": "https://zenith-security-service.vercel.app/#organization",
+        "@id": "https://www.zenithprotectiveservice.site/#organization",
       },
       potentialAction: {
         "@type": "SearchAction",
         target:
-          "https://zenith-security-service.vercel.app/search?q={search_term_string}",
+          "https://www.zenithprotectiveservice.site/search?q={search_term_string}",
         "query-input": "required name=search_term_string",
       },
     },

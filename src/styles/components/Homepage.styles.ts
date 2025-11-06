@@ -413,3 +413,11 @@ export const StyledImgGrid = styled.div`
     }
   }
 `;
+
+export const StyledError = styled.div`
+  padding: 12px;
+  background: #ef4444;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 16px;
+`;

@@ -4,31 +4,11 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: "*",
+        userAgent: "*", // applies to all crawlers, including AI bots
         allow: "/",
-        disallow: ["/api/", "/admin/", "/_next/", "/private/"],
-      },
-      {
-        userAgent: "GPTBot", // OpenAI crawler
-        disallow: "/",
-      },
-      {
-        userAgent: "ChatGPT-User",
-        disallow: "/",
-      },
-      {
-        userAgent: "CCBot", // Common Crawl
-        disallow: "/",
-      },
-      {
-        userAgent: "anthropic-ai", // Claude
-        disallow: "/",
-      },
-      {
-        userAgent: "Google-Extended", // Google AI training
-        disallow: "/",
+        disallow: ["/api/", "/admin/", "/private/"],
       },
     ],
-    sitemap: "https://zenith-security-service.vercel.app/sitemap.xml",
+    sitemap: "https://www.zenithprotectiveservice.site//sitemap.xml",
   };
 }

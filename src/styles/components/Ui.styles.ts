@@ -49,6 +49,22 @@ export const StyledLink = styled(Link)<{
         `}
 `;
 
+export const StyledButton = styled.button`
+  display: flex;
+  align-items: center;
+  padding: ${pxTorem(8)} ${pxTorem(24)};
+  transition: all 0.3s ease-in-out;
+  border-radius: ${pxTorem(50)};
+  width: 100%;
+  border: var(--col-000) 1px solid;
+  color: var(--col-000);
+  background-color: transparent;
+  &:hover {
+    background-color: var(--col-000);
+    color: var(--col-100);
+  }
+`;
+
 export const StyledMainWrapper = styled.main`
   display: grid;
   grid-template-columns: 1fr;

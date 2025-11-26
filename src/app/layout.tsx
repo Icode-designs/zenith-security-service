@@ -19,12 +19,10 @@ export const metadata: Metadata = {
   title: {
     default:
       "Licensed Security Guards & 24/7 Protection Services | Zenith Protective Services CA",
-    template: "%s | Zenith Protective Services", // For page-specific titles
+    template: "%s | Zenith Protective Services",
   },
   description:
     "Zenith Protective Services Inc. offers 24/7 licensed security guard services for businesses, hospitals, hotels & properties in California. Affordable, professional protection you can trust.",
-
-  // Keywords (though less important now, still good to have)
   keywords: [
     "security guards California",
     "24/7 security services",

@@ -32,6 +32,7 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 }
 
 body{
+    display: none;
     font-family: 'Switzer';
     background-color: var(--col-100);
     color: var(--col-000);

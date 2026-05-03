@@ -32,7 +32,7 @@ function mapRow(row: any): Submission {
 export async function createSubmission(
   data: Omit<Submission, "id" | "submittedAt">,
 ): Promise<Submission> {
-  const supabase = getSupabase();
+  const supabase = getSupabase() as any;
 
   const { data: result, error } = await supabase
     .from("form_submissions")
@@ -72,7 +72,7 @@ export async function updateSubmissionStatus(
   id: string,
   status: Submission["status"],
 ): Promise<Submission> {
-  const supabase = getSupabase();
+  const supabase = getSupabase() as any;
   const { data, error } = await supabase
     .from("form_submissions")
     .update({ status })

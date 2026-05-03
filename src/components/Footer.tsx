@@ -7,9 +7,13 @@ import {
 import Logo from "./ui/Logo";
 import { StyledLink } from "@/styles/components/Ui.styles";
 import Link from "next/link";
-import { SERVICES_LIST } from "@/utils/data";
+import { SERVICETYPE } from "@/utils/data";
 
-const Footer = () => {
+interface Props {
+  services: SERVICETYPE[];
+}
+
+const Footer = ({ services }: Props) => {
   return (
     <StyledFooter>
       <StyledFooterContent>
@@ -29,7 +33,7 @@ const Footer = () => {
         </ul>
         <ul>
           <h4>our services</h4>
-          {SERVICES_LIST.map((service, i) => (
+          {services.map((service, i) => (
             <li key={i}>
               <StyledLink href={`/services/service/${service.id}`}>
                 {service.name}
@@ -48,6 +52,9 @@ const Footer = () => {
           </li>
           <li>
             <Link href="/services">services</Link>
+          </li>
+          <li>
+            <Link href="/blog">blog</Link>
           </li>
           <li>
             <Link href="/contact">contact us</Link>

@@ -197,13 +197,24 @@ export const StyledServiceCard = styled.li`
   &:hover {
     box-shadow: ${pxTorem(6)} ${pxTorem(12)} ${pxTorem(10)} rgba(0, 0, 0, 0.1);
   }
-  img {
+  img, .empty-image {
     width: 100%;
     height: ${pxTorem(235)};
     border-radius: ${pxTorem(12)};
+    margin-bottom: ${pxTorem(16)};
+  }
+
+  img {
     object-fit: cover;
     object-position: top;
-    margin-bottom: ${pxTorem(16)};
+  }
+
+  .empty-image {
+    background-color: var(--col-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--col-500);
   }
 
   article {

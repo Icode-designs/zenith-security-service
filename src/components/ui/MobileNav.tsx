@@ -28,6 +28,9 @@ const MobileNav = () => {
             <Link href="/services">Services</Link>
           </li>
           <li>
+            <Link href="/blog">Blog</Link>
+          </li>
+          <li>
             <StyledLink href="/contact" $variant="primary">
               <p>contact us</p>
             </StyledLink>

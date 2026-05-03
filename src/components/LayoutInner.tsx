@@ -7,8 +7,15 @@ import Header from "./Header";
 import MobileNav from "./ui/MobileNav";
 import Footer from "./Footer";
 import Callus from "./Callus";
+import { SERVICETYPE } from "@/utils/data";
 
-const LayoutInner = ({ children }: { children: React.ReactNode }) => {
+const LayoutInner = ({
+  children,
+  services,
+}: {
+  children: React.ReactNode;
+  services: SERVICETYPE[];
+}) => {
   const nav = useContext(NAV_CONTEXT);
   const isOpen = nav?.isOpen ?? false;
 
@@ -18,7 +25,7 @@ const LayoutInner = ({ children }: { children: React.ReactNode }) => {
       {children}
       <MobileNav />
       <Callus />
-      <Footer />
+      <Footer services={services} />
     </>
   );
 };

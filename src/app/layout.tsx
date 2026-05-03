@@ -268,11 +268,15 @@ const structuredData = {
   ],
 };
 
-export default function RootLayout({
+import { getServices } from "@/lib/supabase/services";
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const services = await getServices();
+
   return (
     <html lang="en">
       <head>
@@ -306,7 +310,7 @@ export default function RootLayout({
       <body className={poppins.variable}>
         <StyledComponentsRegistry>
           <NavContextProvider>
-            <LayoutInner>{children}</LayoutInner>
+            <LayoutInner services={services}>{children}</LayoutInner>
           </NavContextProvider>
         </StyledComponentsRegistry>
 

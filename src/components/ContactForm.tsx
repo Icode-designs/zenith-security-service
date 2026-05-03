@@ -9,52 +9,82 @@ import {
   StyledSelect,
   StyledTextarea,
 } from "@/styles/components/Ui.styles";
-import { SERVICES_LIST } from "@/utils/data";
+import { SERVICETYPE } from "@/utils/data";
 import emailjs from "@emailjs/browser";
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import { StyledError } from "@/styles/components/Homepage.styles";
+import { createSubmission } from "@/lib/supabase/form-submissions";
 
 // Initialize EmailJS once outside the component
 emailjs.init({
   publicKey: "stWw7uvY_czmhHtIB",
 });
 
-const ContactForm = () => {
-  const [selectedValue, setSelectedValue] = useState(
-    SERVICES_LIST[0]?.name || ""
-  );
+interface Props {
+  services: SERVICETYPE[];
+}
+
+const ContactForm = ({ services }: Props) => {
+  const [selectedValue, setSelectedValue] = useState(services[0]?.name || "");
+
+  useEffect(() => {
+    if (services.length > 0 && !selectedValue) {
+      setSelectedValue(services[0].name);
+    }
+  }, [services, selectedValue]);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Extract form values
+    const firstName = formData.get("first-name") as string;
+    const lastName = formData.get("last-name") as string;
+    const email = formData.get("email") as string;
+    const phone = formData.get("tel") as string;
+    const service = formData.get("service") as string;
+    const message = formData.get("message") as string;
 
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
-    emailjs
-      .sendForm("service_6xpf76g", "template_bvzl7eh", form)
-      .then((result) => {
-        console.log("Success:", result.text);
-        setSubmitStatus("success");
-        setIsSubmitting(false);
+    try {
+      // Step 1: Send email via EmailJS (preserve existing behavior)
+      await emailjs.sendForm("service_6xpf76g", "template_bvzl7eh", form);
+      console.log("EmailJS success: Email sent");
 
-        // Reset form
-        form.reset();
-        setSelectedValue(SERVICES_LIST[0]?.name || "");
-
-        // Clear success message after 5 seconds
-        setTimeout(() => setSubmitStatus("idle"), 5000);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        setSubmitStatus("error");
-        setIsSubmitting(false);
+      // Step 2: Submit to backend (Supabase)
+      const submission = await createSubmission({
+        name: `${firstName} ${lastName}`.trim(),
+        email,
+        phone: phone.trim() || null, // nullable if empty
+        service,
+        message,
+        status: "new",
       });
+
+      console.log("Submission saved:", submission.id);
+
+      // Success: Reset form and show success message
+      setSubmitStatus("success");
+      form.reset();
+      setSelectedValue(services[0]?.name || "");
+
+      // Clear success message after 5 seconds
+      setTimeout(() => setSubmitStatus("idle"), 5000);
+    } catch (error) {
+      console.error("Submission error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -117,7 +147,7 @@ const ContactForm = () => {
           onChange={(e) => setSelectedValue(e.target.value)}
           required
         >
-          {SERVICES_LIST.map((service, i) => (
+          {services.map((service, i) => (
             <option value={service.name} key={i}>
               {service.name}
             </option>

@@ -30,7 +30,7 @@ export const StyledContactContent = styled.div`
   }
 
   form {
-    max-width: ${pxTorem(900)};
+    max-width: ${pxTorem(700)};
     margin: 0 auto;
     transform: none;
   }

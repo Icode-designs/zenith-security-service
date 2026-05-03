@@ -28,25 +28,25 @@ export const StyledLink = styled(Link)<{
           }
         `
       : $variant === "secondary"
-      ? css`
-          border: var(--col-000) 1px solid;
-          color: var(--col-000);
-          background-color: transparent;
-          &:hover {
-            background-color: var(--col-000);
-            color: var(--col-100);
-          }
-        `
-      : css`
-          color: var(--col-400);
-          text-transform: uppercase;
-          gap: ${pxTorem(14)};
-          background: none;
-          border: none;
-          &:hover {
-            color: var(--col-200);
-          }
-        `}
+        ? css`
+            border: var(--col-000) 1px solid;
+            color: var(--col-000);
+            background-color: transparent;
+            &:hover {
+              background-color: var(--col-000);
+              color: var(--col-100);
+            }
+          `
+        : css`
+            color: var(--col-400);
+            text-transform: uppercase;
+            gap: ${pxTorem(14)};
+            background: none;
+            border: none;
+            &:hover {
+              color: var(--col-200);
+            }
+          `}
 `;
 
 export const StyledButton = styled.button`
@@ -68,7 +68,7 @@ export const StyledButton = styled.button`
 export const StyledMainWrapper = styled.main`
   display: grid;
   grid-template-columns: 1fr;
-  gap: ${pxTorem(85)};
+  gap: ${pxTorem(60)};
   > section {
     max-width: ${pxTorem(1200)};
     width: 100%;
@@ -115,7 +115,8 @@ export const StyledHero = styled.div`
     content: "";
     position: absolute;
     inset: 0;
-    background-image: repeating-linear-gradient(
+    background-image:
+      repeating-linear-gradient(
         0deg,
         rgba(255, 255, 255, 0.2) 0px,
         rgba(255, 255, 255, 0.2) 1px,
@@ -147,12 +148,12 @@ export const StyledForm = styled.form`
   display: grid;
   gap: ${pxTorem(24)};
   z-index: 10;
-  transform: translateY(30%);
-  width: 100% !important;
+  max-width: ${pxTorem(700)};
   border-radius: ${pxTorem(12)};
   box-shadow: ${pxTorem(6)} ${pxTorem(-6)} ${pxTorem(10)} rgba(0, 0, 0, 0.1);
   padding: ${pxTorem(37)} ${pxTorem(24)};
   background-color: var(--col-100);
+  margin: ${pxTorem(40)} auto;
 `;
 export const StyledInput = styled.input`
   border-radius: ${pxTorem(12)};

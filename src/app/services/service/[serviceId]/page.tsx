@@ -3,19 +3,21 @@ import ServiceDetailContent from "@/components/ServiceDetailContent";
 import ServiceDetrailHero from "@/components/ServiceDetrailHero";
 import FAQ from "@/components/ui/FAQ";
 import { StyledMainWrapper } from "@/styles/components/Ui.styles";
-import { SERVICES_LIST } from "@/utils/data";
-import React, { use } from "react";
+import { getServiceById } from "@/lib/supabase/services";
+import React from "react";
 
-const Page = ({ params }: { params: Promise<{ serviceId: string }> }) => {
-  const resolvedParams = use(params);
+const Page = async ({ params }: { params: Promise<{ serviceId: string }> }) => {
+  const resolvedParams = await params;
   const id = resolvedParams.serviceId;
-  const service = SERVICES_LIST.find((serv) => serv.id === id);
-  console.log(id);
+  const service = await getServiceById(id);
 
-  if (!service) return;
-  <StyledMainWrapper>
-    <h2>service not found</h2>
-  </StyledMainWrapper>;
+  if (!service) {
+    return (
+      <StyledMainWrapper>
+        <h2>service not found</h2>
+      </StyledMainWrapper>
+    );
+  }
 
   return (
     <>

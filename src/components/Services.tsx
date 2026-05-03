@@ -4,13 +4,14 @@ import {
   StyledServiceCardGrid,
   StyledServices,
 } from "@/styles/components/Homepage.styles";
-import { SERVICES_LIST } from "@/utils/data";
+import { SERVICETYPE } from "@/utils/data";
 import ServiceCard from "./ui/ServiceCard";
 interface Props {
   alternate?: boolean;
+  services: SERVICETYPE[];
 }
 
-const Services = ({ alternate }: Props) => {
+const Services = ({ alternate, services }: Props) => {
   return (
     <SectionSwitcher>
       <StyledServices $alternate={alternate}>
@@ -31,7 +32,7 @@ const Services = ({ alternate }: Props) => {
           )}
         </article>
         <StyledServiceCardGrid>
-          {SERVICES_LIST.map((service, i) => (
+          {services.map((service, i) => (
             <ServiceCard
               key={i}
               id={service.id}

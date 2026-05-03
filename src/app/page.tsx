@@ -6,17 +6,20 @@ import Outro from "@/components/Outro";
 import Services from "@/components/Services";
 import Testimonial from "@/components/Testimonial";
 import { StyledMainWrapper } from "@/styles/components/Ui.styles";
+import { getServices } from "@/lib/supabase/services";
 
-export default function Home() {
+export default async function Home() {
+  const services = await getServices();
+
   return (
     <StyledMainWrapper>
       <Hero>
         <HomeHeroContent />
       </Hero>
       <HomeIntro />
-      <Services />
+      <Services services={services} />
       <Testimonial />
-      <ContactForm />
+      <ContactForm services={services} />
       <Outro />
     </StyledMainWrapper>
   );

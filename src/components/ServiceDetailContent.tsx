@@ -4,6 +4,7 @@ import { StyledServiceDetailContent } from "@/styles/components/Services.styles"
 import { FlexBox } from "@/styles/components/Ui.styles";
 import { SERVICETYPE } from "@/utils/data";
 import Image from "next/image";
+import { MdOutlineImageNotSupported } from "react-icons/md";
 
 interface PROPS {
   service: SERVICETYPE;
@@ -18,12 +19,18 @@ const ServiceDetailContent = ({ service }: PROPS) => {
             <h2>{service.intro.title}</h2>
             <p>{service.intro.description}</p>
           </article>
-          <Image
-            src={service.url[0]}
-            width={500}
-            height={500}
-            alt={service.intro.title}
-          />
+          {service.url[0] ? (
+            <Image
+              src={service.url[0]}
+              width={500}
+              height={500}
+              alt={service.intro.title}
+            />
+          ) : (
+            <div className="empty-image">
+              <MdOutlineImageNotSupported size={64} />
+            </div>
+          )}
         </FlexBox>
         <FlexBox $variant="secondary">
           <article>

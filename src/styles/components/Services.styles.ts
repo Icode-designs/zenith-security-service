@@ -52,13 +52,25 @@ export const StyledServiceDetailsHero = styled.div`
     max-width: ${pxTorem(986)};
   }
 
-  img {
+  img, .empty-image {
     width: 70%;
     height: auto;
+    min-height: ${pxTorem(300)};
     max-height: ${pxTorem(560)};
+    border-radius: ${pxTorem(12)};
+  }
+
+  img {
     object-fit: cover;
     object-position: top;
-    border-radius: ${pxTorem(12)};
+  }
+
+  .empty-image {
+    background-color: var(--col-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--col-500);
   }
   a {
     border-color: var(--col-100);
@@ -80,10 +92,20 @@ export const StyledServiceDetailContent = styled.div`
       gap: ${pxTorem(16)};
     }
     &:nth-of-type(1) {
-      img {
+      img, .empty-image {
         width: 100%;
-        object-fit: cover;
         border-radius: ${pxTorem(12)};
+      }
+      img {
+        object-fit: cover;
+      }
+      .empty-image {
+        background-color: var(--col-300);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--col-500);
+        height: ${pxTorem(300)};
       }
     }
 

@@ -29,6 +29,10 @@ export const StyledBlogGrid = styled.ul`
   max-width: ${pxTorem(1200)};
   margin: 0 auto;
   width: 100%;
+
+  @media (max-width: 640px) {
+   grid-template-columns: 1fr;
+  }
 `;
 
 export const StyledBlogCard = styled.li`

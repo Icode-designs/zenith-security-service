@@ -17,10 +17,16 @@ const ServiceCard = ({ id, img, title, description }: Props) => {
   return (
     <StyledServiceCard>
       {img ? (
-        <Image width={400} height={400} src={img} alt={title} />
+        <Image
+          width={400}
+          height={400}
+          src={img}
+          alt={title}
+          loading="lazy"
+        />
       ) : (
         <div className="empty-image">
-          <MdOutlineImageNotSupported size={48} />
+          <MdOutlineImageNotSupported size={48} aria-hidden="true" />
         </div>
       )}
       <article>
@@ -29,7 +35,7 @@ const ServiceCard = ({ id, img, title, description }: Props) => {
       </article>
       <StyledLink href={`/services/service/${id}`} $variant="tertiary">
         <p>find out more</p>
-        <FaArrowRightLong />
+        <FaArrowRightLong aria-hidden="true" />
       </StyledLink>
     </StyledServiceCard>
   );

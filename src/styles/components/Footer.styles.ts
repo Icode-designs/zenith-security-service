@@ -18,14 +18,24 @@ export const StyledFooterContent = styled.div`
   margin: 0 auto;
   padding: ${pxTorem(47)};
 
-  ul {
+  > div {
     color: var(--col-100);
     text-align: center;
     text-transform: capitalize;
-    li {
-      transition: color ease 0.3s;
-      &:hover {
-        color: var(--col-400);
+
+    h3 {
+      margin-bottom: ${pxTorem(24)};
+      font-size: ${pxTorem(14)};
+      font-weight: 600;
+    }
+
+    ul {
+      color: inherit;
+      li {
+        transition: color ease 0.3s;
+        &:hover {
+          color: var(--col-400);
+        }
       }
     }
 
@@ -53,10 +63,8 @@ export const StyledFooterContent = styled.div`
         }
       }
     }
-    h4 {
-      margin-bottom: ${pxTorem(24)};
-    }
   }
+
   @media (min-width: 768px) {
     justify-items: stretch;
 
@@ -66,7 +74,7 @@ export const StyledFooterContent = styled.div`
       }
     }
 
-    ul {
+    > div {
       text-align: left;
       &:nth-of-type(1) {
         a {
@@ -79,7 +87,7 @@ export const StyledFooterContent = styled.div`
   @media ${QUERY.TABLET} {
     display: flex;
     justify-content: space-between;
-    ul {
+    > div {
       text-align: left;
       &:nth-of-type(1) {
         a {

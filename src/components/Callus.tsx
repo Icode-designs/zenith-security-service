@@ -18,8 +18,8 @@ function Callus() {
           </p>
         </article>
 
-        <StyledLink as={Link} href="tel:(323) 952-1521 " $variant="tertiary">
-          CALL US TODAY <FaArrowRightLong />
+        <StyledLink as={Link} href="tel:+13239521521" $variant="tertiary" aria-label="Call us today at (323) 952-1521">
+          CALL US TODAY <FaArrowRightLong aria-hidden="true" />
         </StyledLink>
       </FlexBox>
     </StyledCTA>

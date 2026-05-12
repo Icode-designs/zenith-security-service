@@ -38,8 +38,8 @@ const HomeHeroContent = () => {
             src={commercialSecurity.src}
             height={189}
             width={189}
-            alt="commercial security"
-            loading="lazy"
+            alt="Commercial security guard"
+            priority
           />
           <p>Commercial security</p>
         </div>
@@ -48,8 +48,8 @@ const HomeHeroContent = () => {
             src={armedSecurity.src}
             height={189}
             width={189}
-            alt="commercial security"
-            loading="lazy"
+            alt="Armed security guard"
+            priority
           />
           <p>Armed guards</p>
         </div>
@@ -58,8 +58,8 @@ const HomeHeroContent = () => {
             src={fireService.src}
             height={189}
             width={189}
-            alt="fire service"
-            loading="lazy"
+            alt="Fire watch service"
+            priority
           />
           <p>Fire service</p>
         </div>

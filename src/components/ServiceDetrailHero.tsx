@@ -19,7 +19,13 @@ const ServiceDetrailHero = ({ service }: PROPS) => {
         <p>{service.description}</p>
       </article>
       {heroImage ? (
-        <Image src={heroImage} width={500} height={500} alt={service.name} />
+        <Image
+          src={heroImage}
+          width={500}
+          height={500}
+          alt={service.name}
+          priority
+        />
       ) : (
         <div className="empty-image">
           <MdOutlineImageNotSupported size={64} />

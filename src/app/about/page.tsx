@@ -16,7 +16,8 @@ const page = () => {
           src={heroImg.src}
           width={300}
           height={700}
-          alt="about hero img"
+          alt="Zenith security guard in uniform"
+          priority
         />
       </Hero>
       <AboutMainContent />

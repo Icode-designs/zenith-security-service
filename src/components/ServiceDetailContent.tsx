@@ -25,10 +25,11 @@ const ServiceDetailContent = ({ service }: PROPS) => {
               width={500}
               height={500}
               alt={service.intro.title}
+              loading="lazy"
             />
           ) : (
             <div className="empty-image">
-              <MdOutlineImageNotSupported size={64} />
+              <MdOutlineImageNotSupported size={64} aria-hidden="true" />
             </div>
           )}
         </FlexBox>

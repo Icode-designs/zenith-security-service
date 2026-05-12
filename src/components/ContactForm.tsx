@@ -14,6 +14,20 @@ import emailjs from "@emailjs/browser";
 import { FormEvent, useEffect } from "react";
 import { StyledError } from "@/styles/components/Homepage.styles";
 import { createSubmission } from "@/lib/supabase/form-submissions";
+import styled from "styled-components";
+
+// Visually hidden label helper (accessible but invisible)
+const VisuallyHidden = styled.label`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+`;
 
 // Initialize EmailJS once outside the component
 emailjs.init({
@@ -31,7 +45,9 @@ const ContactForm = ({ services }: Props) => {
     if (services.length > 0 && !selectedValue) {
       setSelectedValue(services[0].name);
     }
-  }, [services, selectedValue]);
+    // Only re-run when the services list changes, not on every selectedValue update
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [services]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
@@ -93,59 +109,88 @@ const ContactForm = ({ services }: Props) => {
         <h3>Get Professional Security Services Today</h3>
 
         {submitStatus === "error" && (
-          <StyledError>
+          <StyledError role="alert" aria-live="assertive">
             Something went wrong. Please try again or contact us directly.
           </StyledError>
         )}
 
+        {submitStatus === "success" && (
+          <StyledError
+            role="alert"
+            aria-live="polite"
+            style={{ background: "#16a34a" }}
+          >
+            Message sent successfully! We&apos;ll be in touch soon.
+          </StyledError>
+        )}
+
         <FlexBox $gap={16} $variant="secondary">
+          <VisuallyHidden htmlFor="first-name">First Name</VisuallyHidden>
           <StyledInput
+            id="first-name"
             type="text"
             name="first-name"
             placeholder="First Name"
             required
+            aria-required="true"
           />
+          <VisuallyHidden htmlFor="last-name">Last Name</VisuallyHidden>
           <StyledInput
+            id="last-name"
             type="text"
             name="last-name"
             placeholder="Last Name"
             required
+            aria-required="true"
           />
+          <VisuallyHidden htmlFor="company-name">Company Name</VisuallyHidden>
           <StyledInput
+            id="company-name"
             type="text"
             name="company-name"
             placeholder="Company Name"
           />
         </FlexBox>
 
+        <VisuallyHidden htmlFor="email">Email Address</VisuallyHidden>
         <StyledInput
+          id="email"
           type="email"
           name="email"
           placeholder="Email Address"
           required
+          aria-required="true"
         />
 
         <FlexBox $gap={16} $variant="secondary">
+          <VisuallyHidden htmlFor="tel">Phone Number</VisuallyHidden>
           <StyledInput
+            id="tel"
             type="tel"
             name="tel"
             placeholder="Phone Number"
             required
+            aria-required="true"
           />
+          <VisuallyHidden htmlFor="address">City and State</VisuallyHidden>
           <StyledInput
+            id="address"
             type="text"
             name="address"
             placeholder="City and State"
             required
+            aria-required="true"
           />
         </FlexBox>
 
+        <VisuallyHidden htmlFor="service">Service Required</VisuallyHidden>
         <StyledSelect
           id="service"
           name="service"
           value={selectedValue}
           onChange={(e) => setSelectedValue(e.target.value)}
           required
+          aria-required="true"
         >
           {services.map((service, i) => (
             <option value={service.name} key={i}>
@@ -154,10 +199,13 @@ const ContactForm = ({ services }: Props) => {
           ))}
         </StyledSelect>
 
+        <VisuallyHidden htmlFor="message">Message</VisuallyHidden>
         <StyledTextarea
+          id="message"
           name="message"
           placeholder="Brief description of your security needs"
           required
+          aria-required="true"
         />
 
         <StyledButton type="submit" disabled={isSubmitting}>

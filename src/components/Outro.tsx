@@ -36,6 +36,8 @@ const Outro = () => {
               width={300}
               height={300}
               alt="Proven Expertise in Security"
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 33vw"
             />
             <article>
               <h4>Proven Expertise in Security</h4>
@@ -52,6 +54,8 @@ const Outro = () => {
               width={300}
               height={300}
               alt="Customized Security Plans"
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 33vw"
             />
             <article>
               <h4>Customized Security Plans</h4>
@@ -68,6 +72,8 @@ const Outro = () => {
               width={300}
               height={300}
               alt="Full-Service Protection 24/7"
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 33vw"
             />
             <article>
               <h4>Full-Service Protection 24/7</h4>

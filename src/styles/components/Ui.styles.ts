@@ -189,6 +189,7 @@ export const StyledInput = styled.input`
 
   &:focus {
     border-color: var(--col-200);
+    box-shadow: 0 0 0 3px rgba(3, 4, 94, 0.12);
   }
 
   &.error {
@@ -204,8 +205,10 @@ export const StyledTextarea = styled.textarea`
   border: var(--col-700) solid 1px;
   height: ${pxTorem(180)};
   outline: none;
+  resize: vertical;
   &:focus {
     border-color: var(--col-200);
+    box-shadow: 0 0 0 3px rgba(3, 4, 94, 0.12);
   }
 
   &.error {
@@ -220,8 +223,10 @@ export const StyledSelect = styled.select`
   padding: ${pxTorem(10)} ${pxTorem(16)};
   border: var(--col-700) solid 1px;
   outline: none;
+  background-color: var(--col-100);
   &:focus {
     border-color: var(--col-200);
+    box-shadow: 0 0 0 3px rgba(3, 4, 94, 0.12);
   }
 
   &.error {

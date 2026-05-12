@@ -51,6 +51,8 @@ const Testimonial = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
+            aria-live="polite"
+            aria-atomic="true"
           >
             <StyledTesimonialCard
               onMouseEnter={() => setPaused(true)}
@@ -63,14 +65,21 @@ const Testimonial = () => {
         </AnimatePresence>
 
         {/* --- Dots Navigation --- */}
-        <div className="testimonial-dots">
+        <div className="testimonial-dots" role="tablist" aria-label="Testimonials navigation">
           {TESTIMONIALS.map((_, i) => (
-            <GoDotFill
+            <button
               key={i}
-              size={20}
+              role="tab"
+              aria-label={`Go to testimonial ${i + 1}`}
+              aria-selected={i === index}
               onClick={() => setIndex(i)}
-              className={i === index ? "active" : undefined}
-            />
+            >
+              <GoDotFill
+                size={20}
+                aria-hidden="true"
+                className={i === index ? "active" : undefined}
+              />
+            </button>
           ))}
         </div>
       </FlexBox>

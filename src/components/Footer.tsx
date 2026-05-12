@@ -18,48 +18,53 @@ const Footer = ({ services }: Props) => {
     <StyledFooter>
       <StyledFooterContent>
         <Logo />
-        <ul>
-          <h4>Contact us</h4>
-
-          <li>
-            {" "}
-            <a href="tel:(323) 952-1521">(323) 952-1521</a>
-          </li>
-          <li>14030 Chadron Avenue Hawthorne, CA 90250</li>
-
-          <StyledLink href="/contact" $variant="secondary">
-            get in touch
-          </StyledLink>
-        </ul>
-        <ul>
-          <h4>our services</h4>
-          {services.map((service, i) => (
-            <li key={i}>
-              <StyledLink href={`/services/service/${service.id}`}>
-                {service.name}
-              </StyledLink>
+        <div>
+          <h3>Contact us</h3>
+          <ul>
+            <li>
+              {" "}
+              <a href="tel:+13239521521" aria-label="Call us at (323) 952-1521">(323) 952-1521</a>
             </li>
-          ))}
-        </ul>
+            <li>14030 Chadron Avenue Hawthorne, CA 90250</li>
 
-        <ul>
-          <h4>Quick links</h4>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/about">about zenith</Link>
-          </li>
-          <li>
-            <Link href="/services">services</Link>
-          </li>
-          <li>
-            <Link href="/blog">blog</Link>
-          </li>
-          <li>
-            <Link href="/contact">contact us</Link>
-          </li>
-        </ul>
+            <StyledLink href="/contact" $variant="secondary">
+              get in touch
+            </StyledLink>
+          </ul>
+        </div>
+        <div>
+          <h3>Our services</h3>
+          <ul>
+            {services.map((service, i) => (
+              <li key={i}>
+                <StyledLink href={`/services/service/${service.id}`}>
+                  {service.name}
+                </StyledLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3>Quick links</h3>
+          <ul>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/about">About Zenith</Link>
+            </li>
+            <li>
+              <Link href="/services">Services</Link>
+            </li>
+            <li>
+              <Link href="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact us</Link>
+            </li>
+          </ul>
+        </div>
       </StyledFooterContent>
       <StyledAccreditation>
         <div>

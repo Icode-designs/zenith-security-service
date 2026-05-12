@@ -19,7 +19,8 @@ const AboutMainContent = () => {
             src={aboutImg.src}
             width={500}
             height={500}
-            alt="about content image"
+            alt="Zenith Protective Services team"
+            loading="lazy"
           />
           <article>
             <p>
@@ -48,9 +49,13 @@ const AboutMainContent = () => {
               <StyledLink $variant="secondary" href="/contact">
                 ready to get started?
               </StyledLink>
-              <StyledLink $variant="tertiary" href="/tel:(323) 952-1521">
+              <StyledLink
+                $variant="tertiary"
+                href="tel:+13239521521"
+                aria-label="Call us at (323) 952-1521"
+              >
                 <p>(323) 952-1521</p>
-                <FaArrowRightLong />
+                <FaArrowRightLong aria-hidden="true" />
               </StyledLink>
             </FlexBox>
           </article>

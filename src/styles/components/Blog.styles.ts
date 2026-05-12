@@ -409,7 +409,7 @@ export const StyledRelatedPostsContainer = styled.section`
   margin: ${pxTorem(80)} auto ${pxTorem(40)};
   padding: 0 ${pxTorem(20)};
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
 
   h2 {
     color: var(--col-000);

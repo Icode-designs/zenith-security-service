@@ -28,10 +28,10 @@ const HomeIntro = () => {
           <div>
             <Image
               src={cctv.src}
-              alt="security guard"
+              alt="CCTV security monitoring"
               width={600}
               height={400}
-              loading="lazy"
+              priority
             />
           </div>
         </FlexBox>

@@ -64,8 +64,15 @@ button{
     justify-content: center;
 }
 
-buutton:disabled, input:disabled{
+button:disabled, input:disabled{
     cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Visible keyboard focus ring */
+*:focus-visible {
+    outline: 2px solid var(--col-300);
+    outline-offset: 2px;
 }
 
 h1{

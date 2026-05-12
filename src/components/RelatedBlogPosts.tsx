@@ -44,17 +44,18 @@ const RelatedBlogPosts = ({ posts, currentPostId }: Props) => {
 
           return (
             <StyledRelatedPostItem key={post.id}>
-              <Link href={`/blog/${post.id}`}>
+              <Link href={`/blog/${post.id}`} aria-label={`Read more about ${post.title}`}>
                 {post.coverImageUrl ? (
                   <Image
                     width={300}
                     height={200}
                     src={post.coverImageUrl}
                     alt={post.title}
+                    loading="lazy"
                   />
                 ) : (
                   <div className="empty-image">
-                    <MdOutlineImageNotSupported size={32} />
+                    <MdOutlineImageNotSupported size={32} aria-hidden="true" />
                   </div>
                 )}
               </Link>
@@ -68,9 +69,9 @@ const RelatedBlogPosts = ({ posts, currentPostId }: Props) => {
                   <Link href={`/blog/${post.id}`}>{post.title}</Link>
                 </h3>
                 <p className="excerpt">{trimTextLength(post.excerpt)}</p>
-                <Link href={`/blog/${post.id}`} className="read-more">
+                <Link href={`/blog/${post.id}`} className="read-more" aria-label={`Read more about ${post.title}`}>
                   <span>read more</span>
-                  <FaArrowRightLong size={14} />
+                  <FaArrowRightLong size={14} aria-hidden="true" />
                 </Link>
               </div>
             </StyledRelatedPostItem>

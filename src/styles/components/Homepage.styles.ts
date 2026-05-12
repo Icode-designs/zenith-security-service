@@ -309,12 +309,25 @@ export const StyledTestimonialsBox = styled.section`
     > div:nth-of-type(2) {
       display: grid;
       gap: ${pxTorem(5)};
-      svg {
-        color: var(--col-600);
-        font-size: ${pxTorem(16)};
+      button {
+        background: none;
+        border: none;
+        padding: 0;
         cursor: pointer;
-        &.active {
-          color: var(--col-400);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:focus-visible {
+          outline: 2px solid var(--col-300);
+          outline-offset: 2px;
+          border-radius: 50%;
+        }
+        svg {
+          color: var(--col-600);
+          font-size: ${pxTorem(16)};
+          &.active {
+            color: var(--col-400);
+          }
         }
       }
     }

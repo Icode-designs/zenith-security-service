@@ -12,10 +12,14 @@ const MobileNav = () => {
   if (!navCtx) return null;
   const { isOpen, toggleNav } = navCtx;
   return (
-    <StyledMobileNav $isOpen={isOpen}>
+    <StyledMobileNav $isOpen={isOpen} aria-label="Mobile navigation" aria-hidden={!isOpen}>
       <div>
-        <button onClick={toggleNav} className="close-btn">
-          <IoClose />
+        <button
+          onClick={toggleNav}
+          className="close-btn"
+          aria-label="Close navigation menu"
+        >
+          <IoClose aria-hidden="true" />
         </button>
         <ul>
           <li>
@@ -36,8 +40,8 @@ const MobileNav = () => {
             </StyledLink>
           </li>
           <li>
-            <StyledLink $variant="tertiary" href="tel: (323) 952-1521">
-              <BsFillTelephoneOutboundFill />
+            <StyledLink $variant="tertiary" href="tel:+13239521521">
+              <BsFillTelephoneOutboundFill aria-hidden="true" />
               <p>(323) 952-1521</p>
             </StyledLink>
           </li>

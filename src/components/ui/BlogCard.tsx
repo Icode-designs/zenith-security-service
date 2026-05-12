@@ -26,10 +26,11 @@ const BlogCard = ({ post }: Props) => {
           height={400}
           src={post.coverImageUrl}
           alt={post.title}
+          loading="lazy"
         />
       ) : (
         <div className="empty-image">
-          <MdOutlineImageNotSupported size={48} />
+          <MdOutlineImageNotSupported size={48} aria-hidden="true" />
         </div>
       )}
       <article>
@@ -40,9 +41,13 @@ const BlogCard = ({ post }: Props) => {
         <h3>{post.title}</h3>
         <p className="excerpt">{trimTextLength(post.excerpt)}</p>
       </article>
-      <StyledLink href={`/blog/${post.id}`} $variant="tertiary">
+      <StyledLink
+        href={`/blog/${post.id}`}
+        $variant="tertiary"
+        aria-label={`Read more about ${post.title}`}
+      >
         <p>read more</p>
-        <FaArrowRightLong />
+        <FaArrowRightLong aria-hidden="true" />
       </StyledLink>
     </StyledBlogCard>
   );

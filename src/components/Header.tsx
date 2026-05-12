@@ -21,7 +21,7 @@ const Header = () => {
       <div>
         <Logo />
 
-        <nav>
+        <nav aria-label="Main navigation">
           <ul>
             <li>
               <Link href="/">Home</Link>
@@ -39,16 +39,23 @@ const Header = () => {
         </nav>
 
         <FlexBox $gap={16}>
-          <a href="tel:(323) 952-1521">
+          <a
+            href="tel:+13239521521"
+            aria-label="Call us at (323) 952-1521"
+          >
             <FlexBox $gap={16}>
               {" "}
-              <BsFillTelephoneOutboundFill />
+              <BsFillTelephoneOutboundFill aria-hidden="true" />
               {isTablet && <p>(323) 952-1521</p>}
             </FlexBox>
           </a>
           {!isTablet && (
-            <button onClick={toggleNav}>
-              <HiOutlineMenuAlt3 />
+            <button
+              onClick={toggleNav}
+              aria-label="Open navigation menu"
+              aria-expanded={false}
+            >
+              <HiOutlineMenuAlt3 aria-hidden="true" />
             </button>
           )}
           {isTablet && (

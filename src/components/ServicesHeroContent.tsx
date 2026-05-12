@@ -20,7 +20,8 @@ const ServicesHeroContent = () => {
           src={image.src}
           width={1500}
           height={1000}
-          alt="service page image"
+          alt="Professional security guard on duty"
+          priority
         />
       </div>
     </StyledServiceContent>

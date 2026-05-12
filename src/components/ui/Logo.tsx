@@ -5,12 +5,13 @@ import Link from "next/link";
 
 const Logo = () => {
   return (
-    <Link href="/">
+    <Link href="/" aria-label="Zenith Protective Services home">
       <StyledLogo
         src={logo.src}
         width={500}
         height={700}
-        alt="Zenith protective service logo"
+        alt="Zenith Protective Services logo"
+        priority
       />
     </Link>
   );

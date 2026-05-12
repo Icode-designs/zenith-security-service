@@ -83,6 +83,7 @@ const BlogDetailsPage = async ({
                   width={800}
                   height={500}
                   alt={`${post.title} section image ${index + 1}`}
+                  loading="lazy"
                   style={{
                     width: "100%",
                     height: "auto",

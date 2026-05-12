@@ -69,11 +69,35 @@ export const StyledMainWrapper = styled.main`
   display: grid;
   grid-template-columns: 1fr;
   gap: ${pxTorem(60)};
+  width: 100%;
+  padding: 0;
+
   > section {
     max-width: ${pxTorem(1200)};
     width: 100%;
     margin: 0 auto;
     padding: 0 ${pxTorem(20)};
+  }
+
+  > div {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    gap: ${pxTorem(40)};
+
+    > section {
+      padding: 0 ${pxTorem(16)};
+    }
+  }
+
+  @media (max-width: 480px) {
+    gap: ${pxTorem(24)};
+
+    > section {
+      padding: 0 ${pxTorem(12)};
+    }
   }
 `;
 

@@ -31,7 +31,7 @@ export const StyledBlogGrid = styled.ul`
   width: 100%;
 
   @media (max-width: 640px) {
-   grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -108,7 +108,63 @@ export const StyledBlogDetailHero = styled.div`
   grid-template-columns: 1fr;
   align-content: start;
   gap: ${pxTorem(40)};
-  padding-bottom: ${pxTorem(40)};
+  padding: ${pxTorem(20)} ${pxTorem(20)} ${pxTorem(40)} ${pxTorem(20)};
+  width: 100%;
+  max-width: 100%;
+
+  .back-button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: ${pxTorem(20)};
+    padding: 0 ${pxTorem(10)};
+  }
+
+  .back-button {
+    display: flex;
+    align-items: center;
+    gap: ${pxTorem(8)};
+    padding: ${pxTorem(10)} ${pxTorem(16)};
+    background-color: transparent;
+    border: 1px solid var(--col-300);
+    border-radius: ${pxTorem(8)};
+    color: var(--col-600);
+    font-size: ${pxTorem(14)};
+    font-weight: 500;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: var(--col-100);
+      border-color: var(--col-500);
+      color: var(--col-000);
+      gap: ${pxTorem(12)};
+    }
+
+    svg {
+      transition: transform ease 0.3s;
+      min-width: 18px;
+      min-height: 18px;
+    }
+
+    &:hover svg {
+      transform: translateX(${pxTorem(-4)});
+    }
+
+    @media (max-width: 480px) {
+      padding: ${pxTorem(8)} ${pxTorem(12)};
+      font-size: ${pxTorem(12)};
+      gap: ${pxTorem(6)};
+
+      svg {
+        min-width: 16px;
+        min-height: 16px;
+      }
+    }
+  }
 
   article {
     color: var(--col-000);
@@ -116,6 +172,22 @@ export const StyledBlogDetailHero = styled.div`
     text-align: center;
     gap: ${pxTorem(16)};
     max-width: ${pxTorem(986)};
+    width: 100%;
+
+    h1 {
+      font-size: ${pxTorem(42)};
+      line-height: 1.2;
+      margin: 0;
+      word-break: break-word;
+
+      @media (max-width: 768px) {
+        font-size: ${pxTorem(32)};
+      }
+
+      @media (max-width: 480px) {
+        font-size: ${pxTorem(24)};
+      }
+    }
 
     .meta {
       display: flex;
@@ -125,16 +197,38 @@ export const StyledBlogDetailHero = styled.div`
       opacity: 0.8;
       text-transform: uppercase;
       letter-spacing: 1px;
+      flex-wrap: wrap;
+      margin: 0;
+
+      @media (max-width: 480px) {
+        font-size: ${pxTorem(12)};
+        gap: ${pxTorem(8)};
+        letter-spacing: 0.5px;
+      }
     }
   }
 
   img,
   .empty-image {
-    width: 80%;
+    width: 100%;
+    max-width: ${pxTorem(900)};
     height: auto;
-    min-height: ${pxTorem(400)};
+    min-height: ${pxTorem(300)};
     max-height: ${pxTorem(600)};
     border-radius: ${pxTorem(12)};
+    object-fit: cover;
+    object-position: center;
+
+    @media (max-width: 768px) {
+      min-height: ${pxTorem(250)};
+      max-height: ${pxTorem(400)};
+    }
+
+    @media (max-width: 480px) {
+      min-height: ${pxTorem(200)};
+      max-height: ${pxTorem(300)};
+      border-radius: ${pxTorem(8)};
+    }
   }
 
   img {
@@ -148,6 +242,37 @@ export const StyledBlogDetailHero = styled.div`
     align-items: center;
     justify-content: center;
     color: var(--col-500);
+
+    svg {
+      width: 64px;
+      height: 64px;
+    }
+
+    @media (max-width: 480px) {
+      svg {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    gap: ${pxTorem(32)};
+    padding: ${pxTorem(16)} ${pxTorem(16)} ${pxTorem(32)} ${pxTorem(16)};
+
+    .back-button-wrapper {
+      padding: 0 ${pxTorem(6)};
+    }
+  }
+
+  @media (max-width: 480px) {
+    gap: ${pxTorem(24)};
+    padding: ${pxTorem(12)} ${pxTorem(12)} ${pxTorem(24)} ${pxTorem(12)};
+
+    .back-button-wrapper {
+      margin-bottom: ${pxTorem(16)};
+      padding: 0;
+    }
   }
 `;
 
@@ -161,21 +286,54 @@ export const StyledBlogDetailContent = styled.div`
   color: var(--col-700);
   line-height: 1.8;
   font-size: ${pxTorem(16)};
+  width: 100%;
 
   h2 {
     color: var(--col-000);
     margin-top: ${pxTorem(32)};
     margin-bottom: ${pxTorem(16)};
+    font-size: ${pxTorem(28)};
+
+    @media (max-width: 768px) {
+      font-size: ${pxTorem(24)};
+      margin-top: ${pxTorem(24)};
+      margin-bottom: ${pxTorem(12)};
+    }
+
+    @media (max-width: 480px) {
+      font-size: ${pxTorem(20)};
+      margin-top: ${pxTorem(20)};
+      margin-bottom: ${pxTorem(10)};
+    }
   }
 
   h3 {
     color: var(--col-000);
     margin-top: ${pxTorem(24)};
     margin-bottom: ${pxTorem(12)};
+    font-size: ${pxTorem(20)};
+
+    @media (max-width: 768px) {
+      font-size: ${pxTorem(18)};
+      margin-top: ${pxTorem(18)};
+      margin-bottom: ${pxTorem(10)};
+    }
+
+    @media (max-width: 480px) {
+      font-size: ${pxTorem(16)};
+      margin-top: ${pxTorem(16)};
+      margin-bottom: ${pxTorem(8)};
+    }
   }
 
   p {
     margin-bottom: ${pxTorem(16)};
+    font-size: ${pxTorem(16)};
+
+    @media (max-width: 480px) {
+      font-size: ${pxTorem(14)};
+      margin-bottom: ${pxTorem(12)};
+    }
   }
 
   ul,
@@ -183,8 +341,17 @@ export const StyledBlogDetailContent = styled.div`
     margin-bottom: ${pxTorem(24)};
     padding-left: ${pxTorem(24)};
 
+    @media (max-width: 480px) {
+      margin-bottom: ${pxTorem(16)};
+      padding-left: ${pxTorem(16)};
+    }
+
     li {
       margin-bottom: ${pxTorem(8)};
+
+      @media (max-width: 480px) {
+        margin-bottom: ${pxTorem(6)};
+      }
     }
   }
 
@@ -193,6 +360,27 @@ export const StyledBlogDetailContent = styled.div`
     height: auto;
     border-radius: ${pxTorem(12)};
     margin: ${pxTorem(32)} 0;
+
+    @media (max-width: 768px) {
+      margin: ${pxTorem(24)} 0;
+    }
+
+    @media (max-width: 480px) {
+      margin: ${pxTorem(16)} 0;
+      border-radius: ${pxTorem(8)};
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: ${pxTorem(0)} ${pxTorem(16)};
+    margin-bottom: ${pxTorem(60)};
+    gap: ${pxTorem(20)};
+  }
+
+  @media (max-width: 480px) {
+    padding: ${pxTorem(0)} ${pxTorem(12)};
+    margin-bottom: ${pxTorem(40)};
+    gap: ${pxTorem(16)};
   }
 `;
 
@@ -221,6 +409,7 @@ export const StyledRelatedPostsContainer = styled.section`
   margin: ${pxTorem(80)} auto ${pxTorem(40)};
   padding: 0 ${pxTorem(20)};
   width: 100%;
+  overflow-x: scroll;
 
   h2 {
     color: var(--col-000);

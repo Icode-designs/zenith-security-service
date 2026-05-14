@@ -1,12 +1,12 @@
 import { MetadataRoute } from "next";
+import { getPublishedBlogPosts } from "@/lib/supabase/blog-posts";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.zenithprotectiveservice.site";
-
-  // Get current date for lastModified
   const currentDate = new Date();
 
-  return [
+  // Static routes
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: currentDate,
@@ -110,21 +110,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
   ];
-}
 
-// If you have dynamic blog posts, add this function
-export async function generateDynamicSitemap() {
-  const baseUrl = "https://www.zenithprotectiveservice.site/";
+  // Fetch and add dynamic blog post URLs
+  try {
+    const blogPosts = await getPublishedBlogPosts();
+    const blogUrls: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+      url: `${baseUrl}/blog/${post.id}`,
+      lastModified: post.updatedAt,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
 
-  Fetch your blog posts from your CMS or database
-  const posts = await fetchBlogPosts()
-
-  const blogUrls = posts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.updatedAt,
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }))
-
-  return blogUrls
+    return [...staticRoutes, ...blogUrls];
+  } catch (error) {
+    console.error("Error fetching blog posts for sitemap:", error);
+    return staticRoutes;
+  }
 }

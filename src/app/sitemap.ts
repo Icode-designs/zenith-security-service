@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://zenith-security-service.vercel.app";
+  const baseUrl = "https://www.zenithprotectiveservice.site";
 
   // Get current date for lastModified
   const currentDate = new Date();
@@ -114,17 +114,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
 // If you have dynamic blog posts, add this function
 export async function generateDynamicSitemap() {
-  const baseUrl = "https://zenith-security-service.vercel.app";
+  const baseUrl = "https://www.zenithprotectiveservice.site/";
 
-  // Fetch your blog posts from your CMS or database
-  // const posts = await fetchBlogPosts()
+  Fetch your blog posts from your CMS or database
+  const posts = await fetchBlogPosts()
 
-  // const blogUrls = posts.map((post) => ({
-  //   url: `${baseUrl}/blog/${post.slug}`,
-  //   lastModified: post.updatedAt,
-  //   changeFrequency: 'monthly' as const,
-  //   priority: 0.6,
-  // }))
+  const blogUrls = posts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: post.updatedAt,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
 
-  // return blogUrls
+  return blogUrls
 }

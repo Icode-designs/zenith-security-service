@@ -327,6 +327,7 @@ export const StyledBlogDetailContent = styled.div`
   }
   a {
     color: var(--col-200) !important;
+    text-decoration: underline;
   }
   p {
     margin-bottom: ${pxTorem(16)};

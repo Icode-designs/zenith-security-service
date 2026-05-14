@@ -325,7 +325,9 @@ export const StyledBlogDetailContent = styled.div`
       margin-bottom: ${pxTorem(8)};
     }
   }
-
+  a {
+    color: var(--col-200) !important;
+  }
   p {
     margin-bottom: ${pxTorem(16)};
     font-size: ${pxTorem(16)};

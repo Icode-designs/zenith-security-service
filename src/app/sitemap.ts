@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { getPublishedBlogPosts } from "@/lib/supabase/blog-posts";
+import { slugify } from "@/utils/helpers/slugify";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.zenithprotectiveservice.site";
@@ -115,7 +116,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const blogPosts = await getPublishedBlogPosts();
     const blogUrls: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-      url: `${baseUrl}/blog/${post.id}`,
+      url: `${baseUrl}/blog/${slugify(post.title)}`,
       lastModified: post.updatedAt,
       changeFrequency: "monthly" as const,
       priority: 0.6,

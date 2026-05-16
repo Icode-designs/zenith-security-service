@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BlogPost } from "@/lib/supabase/blog-posts";
+import { slugify } from "@/utils/helpers/slugify";
 import {
   StyledRelatedPostsContainer,
   StyledRelatedPostsWrapper,
@@ -44,7 +45,7 @@ const RelatedBlogPosts = ({ posts, currentPostId }: Props) => {
 
           return (
             <StyledRelatedPostItem key={post.id}>
-              <Link href={`/blog/${post.id}`} aria-label={`Read more about ${post.title}`}>
+              <Link href={`/blog/${slugify(post.title)}`} aria-label={`Read more about ${post.title}`}>
                 {post.coverImageUrl ? (
                   <Image
                     width={300}
@@ -66,10 +67,10 @@ const RelatedBlogPosts = ({ posts, currentPostId }: Props) => {
                   <span>{formattedDate}</span>
                 </div>
                 <h3>
-                  <Link href={`/blog/${post.id}`}>{post.title}</Link>
+                  <Link href={`/blog/${slugify(post.title)}`}>{post.title}</Link>
                 </h3>
                 <p className="excerpt">{trimTextLength(post.excerpt)}</p>
-                <Link href={`/blog/${post.id}`} className="read-more" aria-label={`Read more about ${post.title}`}>
+                <Link href={`/blog/${slugify(post.title)}`} className="read-more" aria-label={`Read more about ${post.title}`}>
                   <span>read more</span>
                   <FaArrowRightLong size={14} aria-hidden="true" />
                 </Link>

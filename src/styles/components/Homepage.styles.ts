@@ -160,7 +160,7 @@ export const StyledServices = styled.div<{ $alternate?: boolean }>`
   ${({ $alternate }) =>
     $alternate &&
     css`
-      margin-top: ${pxTorem(32)};
+      margin-top: ${pxTorem(60)};
       padding-bottom: ${pxTorem(85)};
     `};
   > article {
@@ -197,7 +197,8 @@ export const StyledServiceCard = styled.li`
   &:hover {
     box-shadow: ${pxTorem(6)} ${pxTorem(12)} ${pxTorem(10)} rgba(0, 0, 0, 0.1);
   }
-  img, .empty-image {
+  img,
+  .empty-image {
     width: 100%;
     height: ${pxTorem(235)};
     border-radius: ${pxTorem(12)};
@@ -265,7 +266,8 @@ export const StyledTestimonialsBox = styled.section`
     content: "";
     position: absolute;
     inset: 0;
-    background-image: repeating-linear-gradient(
+    background-image:
+      repeating-linear-gradient(
         0deg,
         rgba(255, 255, 255, 0.2) 0px,
         rgba(255, 255, 255, 0.2) 1px,

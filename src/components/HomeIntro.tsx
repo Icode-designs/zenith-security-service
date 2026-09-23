@@ -1,7 +1,7 @@
 import { FlexBox, StyledLink } from "@/styles/components/Ui.styles";
 import Image from "next/image";
 import React from "react";
-import cctv from "@/assets/cctyMonitor.jpg";
+import cctv from "@/assets/hotel-security-1.jpeg";
 import { StyledIntro } from "@/styles/components/Homepage.styles";
 import SectionSwitcher from "./SectionWrapper";
 

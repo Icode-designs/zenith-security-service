@@ -6,9 +6,9 @@ import {
 } from "@/styles/components/Homepage.styles";
 import pxTorem from "@/utils/helpers/pxTorem";
 import React from "react";
-import commercialSecurity from "@/assets/commercialGuards2.jpg";
-import armedSecurity from "@/assets/armedGuards.jpg";
-import fireService from "@/assets/fireService.jpg";
+import commercialSecurity from "@/assets/commeercial-security-1.jpeg";
+import armedSecurity from "@/assets/armed-guards.jpeg";
+import fireService from "@/assets/firewatch.jpeg";
 import Image from "next/image";
 import { StyledLink } from "@/styles/components/Ui.styles";
 

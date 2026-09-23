@@ -5,7 +5,7 @@ import {
   StyledTestimonialsBox,
 } from "@/styles/components/Homepage.styles";
 import { FlexBox } from "@/styles/components/Ui.styles";
-import missionImg from "@/assets/missionImg.jpg";
+import missionImg from "@/assets/patrol.jpeg";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { TESTIMONIALS } from "@/utils/data";
@@ -65,7 +65,11 @@ const Testimonial = () => {
         </AnimatePresence>
 
         {/* --- Dots Navigation --- */}
-        <div className="testimonial-dots" role="tablist" aria-label="Testimonials navigation">
+        <div
+          className="testimonial-dots"
+          role="tablist"
+          aria-label="Testimonials navigation"
+        >
           {TESTIMONIALS.map((_, i) => (
             <button
               key={i}

@@ -5,7 +5,7 @@ import {
   StyledTestimonialsBox,
 } from "@/styles/components/Homepage.styles";
 import { FlexBox } from "@/styles/components/Ui.styles";
-import missionImg from "@/assets/patrol.jpeg";
+import mission_Img from "@/assets/patrol-2.jpeg";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { TESTIMONIALS } from "@/utils/data";
@@ -34,7 +34,7 @@ const Testimonial = () => {
       <FlexBox $variant="secondary">
         <h2>What Is Our Mission At Zenith Protective Services?</h2>
         <Image
-          src={missionImg.src}
+          src={mission_Img.src}
           width={500}
           height={500}
           alt="mission img"

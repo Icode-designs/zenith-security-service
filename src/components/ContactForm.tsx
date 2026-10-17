@@ -40,7 +40,9 @@ interface Props {
 }
 
 const ContactForm = ({ services, id }: Props) => {
-  const [selectedValue, setSelectedValue] = useState(services[0]?.name || "");
+  const [selectedValue, setSelectedValue] = useState(
+    services[0]?.name || "General security guard inquiry",
+  );
 
   useEffect(() => {
     if (services.length > 0 && !selectedValue) {
@@ -99,7 +101,7 @@ const ContactForm = ({ services, id }: Props) => {
       // Success: Reset form and show success message
       setSubmitStatus("success");
       form.reset();
-      setSelectedValue(services[0]?.name || "");
+      setSelectedValue(services[0]?.name || "General security guard inquiry");
 
       // Clear success message after 5 seconds
       setTimeout(() => setSubmitStatus("idle"), 5000);
@@ -200,6 +202,11 @@ const ContactForm = ({ services, id }: Props) => {
           required
           aria-required="true"
         >
+          {services.length === 0 && (
+            <option value="General security guard inquiry">
+              General security guard inquiry
+            </option>
+          )}
           {services.map((service, i) => (
             <option value={service.name} key={i}>
               {service.name}

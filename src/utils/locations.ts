@@ -6,9 +6,9 @@ import type { StaticImageData } from "next/image";
 // drop them in src/assets/locations/ and change the imports below — nothing
 // else needs to change.
 // ---------------------------------------------------------------------------
-import sbHero from "@/assets/commercialGuards2.jpg";
+import sbHero from "@/assets/location-img(1).jpeg";
 
-import lancHero from "@/assets/armedGuard2.jpg";
+import lancHero from "@/assets/location-img(2).jpeg";
 
 export interface LocationPoint {
   label: string;
@@ -53,8 +53,7 @@ export const LOCATIONS: LocationPageData[] = [
   {
     slug: "security-guard-service-san-bernardino-ca",
     city: "San Bernardino",
-    seoTitle:
-      "Security Guard Service in San Bernardino, CA | 24/7 Guards",
+    seoTitle: "Security Guard Service in San Bernardino, CA | 24/7 Guards",
     metaDescription:
       "BSIS licensed security guard company in San Bernardino, CA. Armed & unarmed guards for warehouses, construction & retail. Same-day deployment. Free quote.",
     h1: "Security Guard Service in San Bernardino, CA",
@@ -63,7 +62,8 @@ export const LOCATIONS: LocationPageData[] = [
       "San Bernardino moves California's freight, and thieves know it. Zenith Protective Services is a BSIS licensed security guard company providing armed & unarmed security guards in San Bernardino for warehouses, construction sites, and commercial properties across the Inland Empire.",
     tagline: "We deploy in hours, not days.",
     heroImage: sbHero,
-    heroImageAlt: "Licensed Zenith security guards on duty in San Bernardino, CA",
+    heroImageAlt:
+      "Licensed Zenith security guards on duty in San Bernardino, CA",
     callLabel: "Call for 24/7 Dispatch",
     quoteLabel: "Get a Free Quote in 30 Minutes",
     localTitle: "Security Guard Services for San Bernardino Properties",
@@ -136,8 +136,7 @@ export const LOCATIONS: LocationPageData[] = [
   {
     slug: "security-guard-service-lancaster-ca",
     city: "Lancaster",
-    seoTitle:
-      "Security Guard Service in Lancaster, CA | Antelope Valley",
+    seoTitle: "Security Guard Service in Lancaster, CA | Antelope Valley",
     metaDescription:
       "BSIS licensed security guard company in Lancaster, CA. Armed & unarmed guards for aerospace, warehouses & retail across Antelope Valley. Same-day quote.",
     h1: "Security Guard Service in Lancaster, CA",

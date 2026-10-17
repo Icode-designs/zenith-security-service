@@ -1,5 +1,9 @@
 import { getSupabase } from "./client";
 
+// The public site only ever INSERTS leads. Reading or updating submissions is
+// an admin task: do it from the CMS with a signed-in admin account (RLS only
+// lets is_admin users read them), never from this public site.
+
 export type Submission = {
   id: string;
   name: string;
@@ -12,22 +16,6 @@ export type Submission = {
   status: "new" | "reviewed" | "contacted" | "closed";
   submittedAt: string;
 };
-
-/** Maps a raw Supabase row → app type */
-function mapRow(row: any): Submission {
-  return {
-    id: row.id,
-    name: row.name,
-    email: row.email,
-    phone: row.phone,
-    company: row.company ?? null,
-    location: row.location ?? null,
-    service: row.service,
-    message: row.message,
-    status: row.status,
-    submittedAt: row.submitted_at,
-  };
-}
 
 /**
  * Create a new form submission
@@ -56,34 +44,4 @@ export async function createSubmission(
   if (error) {
     throw new Error(`Failed to create submission: ${error.message}`);
   }
-}
-
-/** Fetch all submissions ordered newest first */
-export async function getSubmissions(): Promise<Submission[]> {
-  const supabase = getSupabase();
-  const { data, error } = await supabase
-    .from("form_submissions")
-    .select("*")
-    .order("submitted_at", { ascending: false });
-
-  if (error) throw new Error(`Failed to fetch submissions: ${error.message}`);
-  return (data ?? []).map(mapRow);
-}
-
-/** Update the status of a submission */
-export async function updateSubmissionStatus(
-  id: string,
-  status: Submission["status"],
-): Promise<Submission> {
-  const supabase = getSupabase() as any;
-  const { data, error } = await supabase
-    .from("form_submissions")
-    .update({ status })
-    .eq("id", id)
-    .select()
-    .single();
-
-  if (error)
-    throw new Error(`Failed to update submission status: ${error.message}`);
-  return mapRow(data);
 }

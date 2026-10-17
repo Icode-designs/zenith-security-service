@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
 import { PHONE_DISPLAY, PHONE_TEL, PPO_LICENSE } from "@/utils/company";
+import { pageOpenGraph } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Terms and Conditions",
   description:
     "Terms and conditions for Zenith Protective Services, a BSIS licensed Private Patrol Operator in California.",
   alternates: { canonical: "/terms-and-conditions" },
+  openGraph: pageOpenGraph({
+    path: "/terms-and-conditions",
+    title: "Terms and Conditions | Zenith Protective Services",
+    description: "Terms and conditions for Zenith Protective Services, a BSIS licensed Private Patrol Operator in California.",
+  }),
 };
 
 const Phone = () => <a href={PHONE_TEL}>{PHONE_DISPLAY}</a>;

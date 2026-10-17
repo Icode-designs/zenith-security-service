@@ -2,18 +2,24 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import ServicesHeroContent from "@/components/ServicesHeroContent";
 import { StyledMainWrapper } from "@/styles/components/Ui.styles";
-import { getServices } from "@/lib/supabase/services";
+import { getServicesSafe } from "@/lib/supabase/services";
 import React from "react";
+import { pageOpenGraph } from "@/utils/seo";
 
 export const metadata = {
   title: { absolute: "Armed, Unarmed & Fire Watch Security Services | Zenith" },
   description:
     "Zenith's security guard services in California: armed & unarmed guards, fire watch, construction site, hospital, hotel & commercial security.",
   alternates: { canonical: "/services" },
+  openGraph: pageOpenGraph({
+    path: "/services",
+    title: "Armed, Unarmed & Fire Watch Security Services | Zenith",
+    description: "Zenith's security guard services in California: armed & unarmed guards, fire watch, construction site, hospital, hotel & commercial security.",
+  }),
 };
 
 const page = async () => {
-  const services = await getServices();
+  const services = await getServicesSafe();
 
   return (
     <StyledMainWrapper>

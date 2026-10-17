@@ -12,7 +12,7 @@ import {
   StyledLocalIntro,
   StyledWhy,
 } from "@/styles/components/Location.styles";
-import { getServices } from "@/lib/supabase/services";
+import { getServicesSafe } from "@/lib/supabase/services";
 import {
   LocationPageData,
   PHONE_DISPLAY,
@@ -26,7 +26,7 @@ interface Props {
 }
 
 const LocationPage = async ({ location }: Props) => {
-  const services = await getServices();
+  const services = await getServicesSafe();
   const pageUrl = `${SITE_URL}/${location.slug}`;
 
   // Structured data: the business serving this area + the page FAQs.

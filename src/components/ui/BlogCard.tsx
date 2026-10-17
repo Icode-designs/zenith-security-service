@@ -1,7 +1,6 @@
 import { StyledBlogCard } from "@/styles/components/Blog.styles";
 import { StyledLink } from "@/styles/components/Ui.styles";
 import trimTextLength from "@/utils/helpers/trimText";
-import { slugify } from "@/utils/helpers/slugify";
 import Image from "next/image";
 import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -43,7 +42,7 @@ const BlogCard = ({ post }: Props) => {
         <p className="excerpt">{trimTextLength(post.excerpt)}</p>
       </article>
       <StyledLink
-        href={`/blog/${slugify(post.title)}`}
+        href={`/blog/${post.slug}`}
         $variant="tertiary"
         aria-label={`Read more about ${post.title}`}
       >

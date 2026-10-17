@@ -6,6 +6,7 @@ import React from "react";
 import heroImg from "@/assets/portrait-male-security-guard-with-uniform 1.png";
 import AboutMainContent from "@/components/AboutMainContent";
 import AboutCta from "@/components/AboutCta";
+import { pageOpenGraph } from "@/utils/seo";
 
 export const metadata = {
   title: {
@@ -14,6 +15,11 @@ export const metadata = {
   description:
     "Zenith Protective Services is a BSIS licensed security guard company (PPO #122193) in Hawthorne, CA, serving Los Angeles and Southern California 24/7.",
   alternates: { canonical: "/about" },
+  openGraph: pageOpenGraph({
+    path: "/about",
+    title: "About Zenith Protective Services | Hawthorne, CA Security",
+    description: "Zenith Protective Services is a BSIS licensed security guard company (PPO #122193) in Hawthorne, CA, serving Los Angeles and Southern California 24/7.",
+  }),
 };
 
 const page = () => {

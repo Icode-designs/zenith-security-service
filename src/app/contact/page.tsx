@@ -2,18 +2,24 @@ import ContactForm from "@/components/ContactForm";
 import Hero from "@/components/Hero";
 import { StyledContactContent } from "@/styles/components/Contact.styles";
 import { StyledMainWrapper } from "@/styles/components/Ui.styles";
-import { getServices } from "@/lib/supabase/services";
+import { getServicesSafe } from "@/lib/supabase/services";
 import React from "react";
+import { pageOpenGraph } from "@/utils/seo";
 
 export const metadata = {
   title: { absolute: "Contact Zenith | Free Security Guard Quote, Los Angeles" },
   description:
     "Request a free security guard quote from Zenith Protective Services. Call (323) 952-1521 or send your details. Licensed guards in Los Angeles, 24/7.",
   alternates: { canonical: "/contact" },
+  openGraph: pageOpenGraph({
+    path: "/contact",
+    title: "Contact Zenith | Free Security Guard Quote, Los Angeles",
+    description: "Request a free security guard quote from Zenith Protective Services. Call (323) 952-1521 or send your details. Licensed guards in Los Angeles, 24/7.",
+  }),
 };
 
 const page = async () => {
-  const services = await getServices();
+  const services = await getServicesSafe();
 
   return (
     <StyledMainWrapper>

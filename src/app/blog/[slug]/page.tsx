@@ -1,7 +1,10 @@
 import React from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
-  getPublishedBlogPosts,
+  getBlogPostBySlug,
+  getPublishedBlogSlugs,
+  getRelatedBlogPosts,
 } from "@/lib/supabase/blog-posts";
 import { StyledMainWrapper, FlexBox } from "@/styles/components/Ui.styles";
 import { StyledBlogDetailContent } from "@/styles/components/Blog.styles";
@@ -9,39 +12,40 @@ import BlogDetailHero from "@/components/BlogDetailHero";
 import SectionSwitcher from "@/components/SectionWrapper";
 import RelatedBlogPosts from "@/components/RelatedBlogPosts";
 import Image from "next/image";
-import { getServices } from "@/lib/supabase/services";
-import ContactForm from "@/components/ContactForm";
-import { slugify } from "@/utils/helpers/slugify";
+import { pageOpenGraph } from "@/utils/seo";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export async function generateStaticParams() {
   try {
-    const posts = await getPublishedBlogPosts();
-    return posts.map((post) => ({
-      slug: slugify(post.title),
-    }));
+    const slugs = await getPublishedBlogSlugs();
+    return slugs.map((slug) => ({ slug }));
   } catch {
     return [];
   }
 }
 
-const services = await getServices();
-
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
-  const resolvedParams = await params;
-  const allPosts = await getPublishedBlogPosts();
-  const post = allPosts.find((p) => slugify(p.title) === resolvedParams.slug);
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug);
   if (!post) return { title: "Post Not Found" };
 
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${slugify(post.title)}` },
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: pageOpenGraph({
+      path: `/blog/${post.slug}`,
+      title: `${post.title} | Zenith Protective Services`,
+      description: post.excerpt,
+      type: "article",
+      publishedTime: post.createdAt,
+      modifiedTime: post.updatedAt,
+    }),
   };
 }
 
@@ -50,13 +54,15 @@ const BlogDetailsPage = async ({
 }: {
   params: Promise<{ slug: string }>;
 }) => {
-  const resolvedParams = await params;
-  const allPosts = await getPublishedBlogPosts();
-  const post = allPosts.find((p) => slugify(p.title) === resolvedParams.slug);
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
+
+  // Related posts are a nice-to-have: never let them break the article
+  const relatedPosts = await getRelatedBlogPosts(post.id).catch(() => []);
 
   return (
     <StyledMainWrapper>
@@ -96,7 +102,7 @@ const BlogDetailsPage = async ({
         </StyledBlogDetailContent>
       </SectionSwitcher>
       {/* Related Blog Posts Section */}
-      <RelatedBlogPosts posts={allPosts} currentPostId={post.id} />
+      <RelatedBlogPosts posts={relatedPosts} currentPostId={post.id} />
     </StyledMainWrapper>
   );
 };

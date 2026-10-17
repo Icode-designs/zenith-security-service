@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zenith Protective Services website
 
-## Getting Started
+Marketing site for **Zenith Protective Services Inc.**, a BSIS licensed security guard company (PPO #122193) in Hawthorne, California.
 
-First, run the development server:
+Live site: https://www.zenithprotectiveservice.site
+
+## Stack
+
+- [Next.js](https://nextjs.org) 16 (App Router, webpack) with React 19 and TypeScript
+- styled-components for styling, framer-motion for section animations
+- [Supabase](https://supabase.com) for services, blog posts and contact-form leads
+- EmailJS to email each contact-form submission
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run start    # serve the production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+If the dev server shows a hydration warning or stale content after files change, stop it, delete `.next`, start it again and hard-refresh the browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create `.env.local` (never commit it):
 
-## Learn More
+| Variable | Required | Purpose |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | yes | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | yes | Supabase public (anon) key |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | no | GA4 ID (`G-…`). Google Analytics loads only when this is set |
+| `NEXT_PUBLIC_GTM_ID` | no | Google Tag Manager ID (`GTM-…`). GTM loads only when this is set |
 
-To learn more about Next.js, take a look at the following resources:
+Use one of GA4 or GTM, not both, unless GTM is not already sending GA4.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Where content lives
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Content | Source |
+|---|---|
+| Services (cards, service pages, footer list, quote-form dropdown) | Supabase `services` table, `status = 'active'` |
+| Blog posts | Supabase `blog_posts` table, `status = 'published'`. URL is the `slug` column |
+| Contact-form leads | Supabase `form_submissions` table (+ EmailJS email) |
+| Phone, address, license number | `src/utils/company.ts` |
+| Location landing pages | `src/utils/locations.ts` |
+| FAQ page | `src/utils/faqs.ts` |
+| Testimonials (hidden until real ones exist) | `src/utils/data.ts` (`SHOW_TESTIMONIALS`) |
+| Page titles, descriptions, canonicals, Open Graph | `metadata` / `generateMetadata` in each `page.tsx`; helper in `src/utils/seo.ts` |
+| Organization structured data (JSON-LD) | `src/app/layout.tsx` |
 
-## Deploy on Vercel
+### Blog slugs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+New posts get a `slug` automatically from the title (database trigger, capped at 80 characters, made unique with `-2`, `-3`…). Editing a title does **not** change the URL. To change a URL on purpose, edit the `slug` field and add a redirect from the old URL in `next.config.ts`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Database security
+
+Row Level Security is on for every table:
+
+- Visitors (anon) can read active services and published posts, and can only **insert** contact-form leads.
+- Reading leads and editing services or posts requires a signed-in account with `user_profiles.is_admin = true`.
+
+The public site never reads leads. Do admin work from the CMS with an admin account.
+
+## Project structure
+
+```
+src/
+  app/
+    (services)/services/          Services index and /services/[serviceId]
+    (locations)/                  City landing pages (/security-guard-service-<city>-ca)
+    (legal)/                      Terms and privacy policy
+    about/ blog/ contact/ faq/    Static pages; blog/[slug] for posts
+    layout.tsx                    Root layout, site-wide metadata, JSON-LD, analytics, fonts
+    sitemap.ts robots.ts          Built from routes plus live services, posts and locations
+    opengraph-image.png           Default share image
+  components/                     Page sections and UI components
+  lib/supabase/                   Data access (services, blog posts, form submissions)
+  styles/                         styled-components styles per area
+  utils/                          Company info, locations, FAQs, SEO helper
+  assets/                         Images and self-hosted Switzer font
+```
+
+## Adding pages
+
+- **A new city page:** add an entry to `LOCATIONS` in `src/utils/locations.ts` and a small `page.tsx` in `src/app/(locations)/security-guard-service-<city>-ca/` (copy an existing one). The sitemap and footer pick it up automatically.
+- **Any other new standalone page:** give it `metadata` with a title, description, `alternates.canonical` and `openGraph: pageOpenGraph(...)`, then add it to the static routes in `src/app/sitemap.ts`.
+
+## Deployment
+
+The build uses `output: "standalone"`. After deploying, check `/sitemap.xml` and resubmit it in Google Search Console when pages are added or removed. Search Console is verified with `public/google3cfb27c699fa6524.html`; keep that file.
+
+## Fonts
+
+Switzer by Indian Type Foundry, free under the ITF Free Font License from [Fontshare](https://www.fontshare.com/fonts/switzer). It is self-hosted from `src/assets/fonts` through `next/font/local`.

@@ -7,6 +7,7 @@ import { getServiceById } from "@/lib/supabase/services";
 import React from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/utils/seo";
 
 export async function generateMetadata({
   params,
@@ -21,6 +22,11 @@ export async function generateMetadata({
     title: service.name,
     description: service.description,
     alternates: { canonical: `/services/${service.id}` },
+    openGraph: pageOpenGraph({
+      path: `/services/${service.id}`,
+      title: `${service.name} | Zenith Protective Services`,
+      description: service.description,
+    }),
   };
 }
 

@@ -10,6 +10,7 @@ import {
 } from "@/styles/components/Faq.styles";
 import { FAQ_GROUPS, FAQ_LAST_UPDATED } from "@/utils/faqs";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/utils/company";
+import { pageOpenGraph } from "@/utils/seo";
 
 const SITE_URL = "https://www.zenithprotectiveservice.site";
 
@@ -18,6 +19,11 @@ export const metadata: Metadata = {
   description:
     "Answers about Zenith's licensed security guards: armed vs unarmed, fire watch, service areas, pricing, contracts, reporting, and how fast we can start.",
   alternates: { canonical: "/faq" },
+  openGraph: pageOpenGraph({
+    path: "/faq",
+    title: "Security Guard Services FAQ | Zenith Protective Services",
+    description: "Answers about Zenith's licensed security guards: armed vs unarmed, fire watch, service areas, pricing, contracts, reporting, and how fast we can start.",
+  }),
 };
 
 // FAQPage markup describes the visible questions for search engines and AI

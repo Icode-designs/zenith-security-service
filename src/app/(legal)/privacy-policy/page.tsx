@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/utils/company";
+import { pageOpenGraph } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "How Zenith Protective Services collects, uses, and protects your information, including your California (CCPA) privacy rights.",
   alternates: { canonical: "/privacy-policy" },
+  openGraph: pageOpenGraph({
+    path: "/privacy-policy",
+    title: "Privacy Policy | Zenith Protective Services",
+    description: "How Zenith Protective Services collects, uses, and protects your information, including your California (CCPA) privacy rights.",
+  }),
 };
 
 const Phone = () => <a href={PHONE_TEL}>{PHONE_DISPLAY}</a>;

@@ -32,7 +32,7 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 }
 
 body{
-    font-family: 'Switzer';
+    font-family: var(--font-switzer), system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
     background-color: var(--col-100);
     color: var(--col-000);
      overflow-x: hidden;

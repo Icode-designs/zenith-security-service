@@ -1,7 +1,6 @@
 import { MetadataRoute } from "next";
 import { getPublishedBlogPosts } from "@/lib/supabase/blog-posts";
 import { getServices } from "@/lib/supabase/services";
-import { slugify } from "@/utils/helpers/slugify";
 import { LOCATIONS } from "@/utils/locations";
 
 export const revalidate = 3600; // rebuild hourly so new posts/services appear
@@ -49,7 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const blogPosts = await getPublishedBlogPosts();
     blogUrls = blogPosts.map((post) => ({
-      url: `${baseUrl}/blog/${slugify(post.title)}`,
+      url: `${baseUrl}/blog/${post.slug}`,
       lastModified: post.updatedAt,
       changeFrequency: "monthly" as const,
       priority: 0.6,

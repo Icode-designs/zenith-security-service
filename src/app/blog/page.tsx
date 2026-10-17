@@ -6,6 +6,7 @@ import { StyledBlogGrid, StyledEmptyState } from "@/styles/components/Blog.style
 import { getPublishedBlogPosts } from "@/lib/supabase/blog-posts";
 import { MdOutlineArticle } from "react-icons/md";
 import React from "react";
+import { pageOpenGraph } from "@/utils/seo";
 
 export const metadata = {
   title: {
@@ -14,12 +15,21 @@ export const metadata = {
   description:
     "Practical security advice for California businesses: CCTV, access control, construction sites, mobile patrols, and wildfire and earthquake readiness.",
   alternates: { canonical: "/blog" },
+  openGraph: pageOpenGraph({
+    path: "/blog",
+    title: "Security Guard Blog: Tips for California Businesses | Zenith",
+    description: "Practical security advice for California businesses: CCTV, access control, construction sites, mobile patrols, and wildfire and earthquake readiness.",
+  }),
 };
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
 const BlogPage = async () => {
-  const posts = await getPublishedBlogPosts();
+  // On a Supabase outage, show the existing "no posts" state instead of failing
+  const posts = await getPublishedBlogPosts().catch((error) => {
+    console.error("[blog] Could not load posts:", error);
+    return [];
+  });
 
   return (
     <StyledMainWrapper>

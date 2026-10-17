@@ -1,24 +1,44 @@
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import StyledComponentsRegistry from "@/lib/registry";
 import NavContextProvider from "@/providers/NavProvider";
 import LayoutInner from "@/components/LayoutInner";
 import Script from "next/script";
 import logo from "@/assets/logo.png";
+import { getServicesSafe } from "@/lib/supabase/services";
+import { SERVICETYPE } from "@/utils/data";
+import { SITE_NAME, SITE_URL } from "@/utils/seo";
+import { PHONE_TEL } from "@/utils/company";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap", // Improves performance
+// Switzer (Indian Type Foundry, free via Fontshare), self-hosted so there is no
+// render-blocking third-party stylesheet. Files live in src/assets/fonts.
+const switzer = localFont({
+  src: [
+    { path: "../assets/fonts/switzer-300.woff2", weight: "300", style: "normal" },
+    { path: "../assets/fonts/switzer-400.woff2", weight: "400", style: "normal" },
+    { path: "../assets/fonts/switzer-500.woff2", weight: "500", style: "normal" },
+    { path: "../assets/fonts/switzer-600.woff2", weight: "600", style: "normal" },
+    { path: "../assets/fonts/switzer-700.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-switzer",
+  display: "swap",
+  fallback: ["system-ui", "-apple-system", "Segoe UI", "Roboto", "Arial", "sans-serif"],
 });
 
-// SEO-Optimized Metadata
-export const metadata: Metadata = {
-  // Base for resolving relative URLs (canonicals are set on each page)
-  metadataBase: new URL("https://www.zenithprotectiveservice.site"),
+// Analytics load only when real IDs are configured (see README). With no IDs
+// set, no tracking scripts are added to the page.
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
-  // Primary Meta Tags
+export const viewport: Viewport = {
+  themeColor: "#03045e",
+};
+
+// Site-wide defaults. Every page sets its own title, description, canonical
+// and Open Graph tags; these apply only where a page doesn't.
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+
   title: {
     default:
       "Licensed Security Guards & 24/7 Protection Services | Zenith Protective Services CA",
@@ -26,34 +46,13 @@ export const metadata: Metadata = {
   },
   description:
     "Zenith Protective Services Inc. offers 24/7 licensed security guard services for businesses, hospitals, hotels & properties in California. Affordable, professional protection you can trust.",
-  keywords: [
-    "security guards California",
-    "24/7 security services",
-    "licensed security officers",
-    "licensed security professionals",
-    "licensed security guards",
-    "where to find protection",
-    "where to find protective services",
-    "property protection",
-    "hospital security guards",
-    "construction site security",
-    "warehouse security services",
-    "hotel security guards",
-    "commercial security services",
-    "security company Hawthorne CA",
-    "private security guards",
-    "armed security services",
-    "unarmed security guards",
-    "mobile patrol services",
-    "event security California",
-  ],
 
-  // Author and Creator
   authors: [{ name: "Zenith Protective Services Inc." }],
   creator: "Osakwe Bonaventure Ifechukwu",
   publisher: "Zenith Protective Services Inc.",
+  applicationName: SITE_NAME,
+  category: "Security Services",
 
-  // Robots Instructions
   robots: {
     index: true,
     follow: true,
@@ -66,271 +65,174 @@ export const metadata: Metadata = {
     },
   },
 
-  // Open Graph (Facebook, LinkedIn, etc.)
+  // Pages add url/title/description via pageOpenGraph() in src/utils/seo.ts.
+  // The share image comes from src/app/opengraph-image.png.
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.zenithprotectiveservice.site/",
-    siteName: "Zenith Protective Services",
-    title:
-      "Licensed Security Guards & 24/7 Protection Services | Zenith Protective Services",
-    description:
-      "Professional 24/7 security guard services for businesses, hospitals, hotels, and properties in California. Licensed, experienced, and reliable security solutions.",
-    // Share image comes from src/app/opengraph-image.png (1200x630)
+    siteName: SITE_NAME,
   },
 
-  // Twitter Card
+  // No title/description here so X falls back to each page's Open Graph tags.
+  // The share image comes from src/app/twitter-image.png.
   twitter: {
     card: "summary_large_image",
-    title: "Licensed Security Guards | Zenith Protective Services CA",
-    description:
-      "24/7 professional security guard services for businesses and properties in California",
-    // Share image comes from src/app/twitter-image.png
     creator: "@Alexanderosakwe",
   },
 
-  // Verification (add these to Google Search Console and Bing Webmaster)
-  verification: {
-    google: "your-google-verification-code", // Get from Google Search Console
-    yandex: "your-yandex-verification-code",
-    // bing: "your-bing-verification-code",
-  },
-
-  // Additional Meta
-  category: "Security Services",
-
-  // Canonical URLs are set per page. A canonical here is inherited by every
-  // page and would point them all at the homepage.
-  // Alternate languages (if you add a Spanish version later):
-  // alternates: { languages: { es: "/es" } },
-
-  // App-specific (for PWA if you implement it)
-  applicationName: "Zenith Protective Services",
-
-  // Other important meta
-  other: {
-    "geo.region": "US-CA",
-    "geo.placename": "Hawthorne, California",
-    "geo.position": "33.9164;-118.3526",
-    ICBM: "33.9164, -118.3526",
-    classification: "Security Services",
-    coverage: "California, United States",
-    distribution: "global",
-    rating: "general",
-    "revisit-after": "7 days",
-    "theme-color": "#03045e",
-  },
+  // Google Search Console is verified with public/google3cfb27c699fa6524.html.
 };
 
-// Structured Data for SEO (JSON-LD)
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "SecurityService",
-      "@id": "https://www.zenithprotectiveservice.site/#organization",
-      name: "Zenith Protective Services Inc.",
-      alternateName: "Zenith Security Agency",
-      url: "https://www.zenithprotectiveservice.site/",
-      logo: {
-        "@type": "ImageObject",
-        url: logo.src,
-        width: 250,
-        height: 60,
-      },
-      image: logo.src,
-      description:
-        "Professional 24/7 security guard services for businesses, hospitals, hotels, and properties in California.",
-      telephone: "(323) 952-1521", // Add your phone number
-      email: "info@zenithprotective.com", // Add your email****
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "14030 Chadron Avenue Hawthorne, CA 90250",
-        addressLocality: "Hawthorne",
-        addressRegion: "CA",
-        postalCode: "90250",
-        addressCountry: "US",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: "33.9164",
-        longitude: "-118.3526",
-      },
-      openingHoursSpecification: {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday",
+// Structured data (JSON-LD). Services come from the database so the catalogue
+// always matches the service pages that actually exist.
+function buildStructuredData(services: SERVICETYPE[]) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SecurityService",
+        "@id": `${SITE_URL}/#organization`,
+        name: "Zenith Protective Services Inc.",
+        url: `${SITE_URL}/`,
+        logo: {
+          "@type": "ImageObject",
+          url: `${SITE_URL}${logo.src}`,
+          width: logo.width,
+          height: logo.height,
+        },
+        image: `${SITE_URL}${logo.src}`,
+        description:
+          "BSIS licensed security guard company (PPO #122193) providing armed and unarmed security guards 24/7 across Los Angeles and Southern California.",
+        telephone: PHONE_TEL.replace("tel:", ""),
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "14030 Chadron Avenue",
+          addressLocality: "Hawthorne",
+          addressRegion: "CA",
+          postalCode: "90250",
+          addressCountry: "US",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 33.9164,
+          longitude: -118.3526,
+        },
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          ],
+          opens: "00:00",
+          closes: "23:59",
+        },
+        priceRange: "$$",
+        areaServed: [
+          { "@type": "State", name: "California" },
+          { "@type": "City", name: "Los Angeles" },
+          { "@type": "City", name: "Hawthorne" },
+          { "@type": "City", name: "San Bernardino" },
+          { "@type": "City", name: "Lancaster" },
+          { "@type": "City", name: "Palmdale" },
         ],
-        opens: "00:00",
-        closes: "23:59",
+        ...(services.length > 0 && {
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Security Guard Services",
+            itemListElement: services.map((service) => ({
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: service.name,
+                description: service.description,
+                url: `${SITE_URL}/services/${service.id}`,
+              },
+            })),
+          },
+        }),
       },
-      priceRange: "$$",
-      areaServed: [
-        {
-          "@type": "State",
-          name: "California",
-        },
-        {
-          "@type": "City",
-          name: "Los Angeles",
-        },
-        {
-          "@type": "City",
-          name: "Hawthorne",
-        },
-      ],
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Security Services",
-        itemListElement: [
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "24/7 Security Guard Services",
-              description:
-                "Round-the-clock security guard protection for businesses and properties",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Hospital Security Services",
-              description:
-                "Specialized security services for healthcare facilities",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Construction Site Security",
-              description:
-                "Security and fire watch services for construction sites",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Hotel Security Services",
-              description:
-                "Professional security guards for hotels and hospitality",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Property Security Services",
-              description:
-                "Security solutions for commercial and residential properties",
-            },
-          },
-        ],
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: SITE_NAME,
+        publisher: { "@id": `${SITE_URL}/#organization` },
       },
-      // sameAs: [
-      //   "https://www.facebook.com/yourpage", // Add your social media links
-      //   "https://www.linkedin.com/company/yourcompany",
-      //   "https://twitter.com/yourhandle",
-      //   "https://www.instagram.com/yourhandle",
-      // ],
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.zenithprotectiveservice.site/#website",
-      url: "https://www.zenithprotectiveservice.site/",
-      name: "Zenith Protective Services",
-      publisher: {
-        "@id": "https://www.zenithprotectiveservice.site/#organization",
-      },
-      potentialAction: {
-        "@type": "SearchAction",
-        target:
-          "https://www.zenithprotectiveservice.site/search?q={search_term_string}",
-        "query-input": "required name=search_term_string",
-      },
-    },
-  ],
-};
-
-import { getServices } from "@/lib/supabase/services";
+    ],
+  };
+}
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const services = await getServices();
+  // Never let a Supabase hiccup take down every page: render with no services
+  // (empty footer list) instead of throwing.
+  const services = await getServicesSafe();
 
   return (
     <html lang="en">
       <head>
-        {/* Preconnect to external domains for better performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="preconnect" href="https://api.fontshare.com" />
-
-        {/* Font */}
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap"
-          rel="stylesheet"
-        />
-
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-
-        {/* Structured Data */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(buildStructuredData(services)),
+          }}
         />
       </head>
-      <body className={poppins.variable}>
+      <body className={switzer.variable}>
+        {GTM_ID && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        )}
+
         <StyledComponentsRegistry>
           <NavContextProvider>
             <LayoutInner services={services}>{children}</LayoutInner>
           </NavContextProvider>
         </StyledComponentsRegistry>
 
-        {/* Google Analytics - Replace with your GA4 measurement ID */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
-          `}
-        </Script>
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
 
-        {/* Google Tag Manager (Optional but recommended) */}
-        <Script id="google-tag-manager" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-XXXXXXX');
-          `}
-        </Script>
+        {GTM_ID && (
+          <Script id="google-tag-manager" strategy="afterInteractive">
+            {`
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            `}
+          </Script>
+        )}
       </body>
     </html>
   );

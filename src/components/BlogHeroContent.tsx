@@ -5,10 +5,11 @@ const BlogHeroContent = () => {
   return (
     <StyledBlogHeroContent>
       <article>
-        <h1>Insights & News</h1>
+        <h1>Security Tips & Insights for California Businesses</h1>
         <p>
-          Stay up to date with the latest security trends, company updates, and
-          expert advice from the team at Zenith Protective Services.
+          Practical guides on CCTV, access control, construction site security,
+          mobile patrols, and emergency readiness from the team at Zenith
+          Protective Services.
         </p>
       </article>
     </StyledBlogHeroContent>

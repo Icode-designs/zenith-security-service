@@ -10,13 +10,14 @@ const AboutHeroContent = () => {
           About <span>Zenith</span> Protective Services
         </h1>
         <p>
-          Zenith Protective Services Inc is a US-based multinational security
-          services company headquartered in Hawthorne, California that provides
-          a full range of comprehensive security services.
+          Zenith Protective Services Inc. is a BSIS licensed security guard
+          company (PPO #122193) headquartered in Hawthorne, California. We
+          provide armed and unarmed security guards across Los Angeles and
+          Southern California.
         </p>
 
         <StyledLink href="/contact" $variant="secondary">
-          lets get started
+          get a free quote
         </StyledLink>
       </article>
     </StyledAboutHeroContent>

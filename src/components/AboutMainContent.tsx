@@ -10,40 +10,36 @@ const AboutMainContent = () => {
   return (
     <SectionSwitcher>
       <StyledAboutContent>
-        <h2>
-          US-based Multinational Security Services Company in Hawthorne,
-          California.
-        </h2>
+        <h2>A Licensed Security Guard Company in Hawthorne, California</h2>
         <div>
           <Image
             src={aboutImg.src}
             width={500}
             height={500}
-            alt="Zenith Protective Services team"
+            alt="Zenith security guard patrolling an apartment complex with a radio"
             loading="lazy"
           />
           <article>
             <p>
-              Zenith  protective services Inc is a leading security company
-              based in Hawthorne, California. We specialize in providing
-              customized security solutions for construction sites, hospitals,
-              warehouses, financial institution, and apartment complexes. Our
-              highly trained guards undergo advanced training in fire watch ,
-              first aid(CPR) ensuring that they are prepared to handle any
-              situation.  and , offering our clients peace of mind knowing that
-              their property is protected. Our commitment to excellence and
-              customer satisfaction sets us apart in the security industry.
-              Trust Zenith Protective Services to provide the highest level of
-              security for your needs. At Zenith Protective Services Inc., we
-              take pride in the quality and reliability of the protection we
-              deliver. We’re not a corporate giant, nor do we strive to be.
-              Simply put, we are committed to providing only the most effective
-              security solutions tailored to your unique needs. Our mission is
-              to ensure that every client feels safe, supported, and satisfied
-              with the services we provide throughout our entire working
-              relationship. Every member of the Zenith team is dedicated to
-              performance and integrity; our success depends on your safety and
-              peace of mind.
+              Zenith Protective Services Inc. is a security guard company based
+              in Hawthorne, California. We build customized security plans for
+              construction sites, hospitals, warehouses, financial
+              institutions, apartment complexes, hotels, and commercial
+              properties across Los Angeles, the Inland Empire, and Antelope
+              Valley.
+            </p>
+            <p>
+              Our guards are trained in fire watch and first aid (CPR), hold
+              California guard cards, and pass background checks, so they are
+              ready for the situations your site actually faces. You get Daily
+              Activity Reports that show what happened on every shift.
+            </p>
+            <p>
+              We’re not a corporate giant, nor do we strive to be. We focus on
+              security that fits your site, and on making every client feel
+              safe, supported, and satisfied for as long as we work together.
+              Every member of the Zenith team is committed to performance and
+              integrity, because our success depends on your safety.
             </p>
             <FlexBox $variant="secondary">
               <StyledLink $variant="secondary" href="/contact">

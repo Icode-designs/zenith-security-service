@@ -15,6 +15,9 @@ const poppins = Poppins({
 
 // SEO-Optimized Metadata
 export const metadata: Metadata = {
+  // Base for resolving relative URLs (canonicals are set on each page)
+  metadataBase: new URL("https://www.zenithprotectiveservice.site"),
+
   // Primary Meta Tags
   title: {
     default:
@@ -73,14 +76,7 @@ export const metadata: Metadata = {
       "Licensed Security Guards & 24/7 Protection Services | Zenith Protective Services",
     description:
       "Professional 24/7 security guard services for businesses, hospitals, hotels, and properties in California. Licensed, experienced, and reliable security solutions.",
-    images: [
-      {
-        url: logo.src,
-        width: 1200,
-        height: 630,
-        alt: "Zenith Protective Services - Professional Security Guards",
-      },
-    ],
+    // Share image comes from src/app/opengraph-image.png (1200x630)
   },
 
   // Twitter Card
@@ -89,7 +85,7 @@ export const metadata: Metadata = {
     title: "Licensed Security Guards | Zenith Protective Services CA",
     description:
       "24/7 professional security guard services for businesses and properties in California",
-    images: logo.src,
+    // Share image comes from src/app/twitter-image.png
     creator: "@Alexanderosakwe",
   },
 
@@ -103,13 +99,10 @@ export const metadata: Metadata = {
   // Additional Meta
   category: "Security Services",
 
-  // Alternate Languages (if you add Spanish version later)
-  alternates: {
-    canonical: "https://www.zenithprotectiveservice.site/",
-    // languages: {
-    //   'es': 'https://www.zenithprotectiveservice.site/es',
-    // },
-  },
+  // Canonical URLs are set per page. A canonical here is inherited by every
+  // page and would point them all at the homepage.
+  // Alternate languages (if you add a Spanish version later):
+  // alternates: { languages: { es: "/es" } },
 
   // App-specific (for PWA if you implement it)
   applicationName: "Zenith Protective Services",

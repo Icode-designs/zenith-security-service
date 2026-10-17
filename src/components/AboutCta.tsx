@@ -8,14 +8,11 @@ const AboutCta = () => {
     <SectionSwitcher>
       <StyledAboutCta>
         <article>
-          <h2>
-            We Are A Results-Driven Security Company That Is Committed To Your
-            Safety
-          </h2>
+          <h2>Get a Free Security Consultation in Los Angeles</h2>
           <p>
-            To schedule a free consultation with your dedicated Security
-            Solutions Consultant, contact us today at (323) 952-1521 or reach
-            out to us online.
+            To schedule a free consultation with a Zenith security consultant,
+            call (323) 952-1521 or send us your details online. We’ll recommend
+            the right armed or unarmed coverage for your site.
           </p>
           <StyledLink href="/contact" $variant="secondary">
             get in touch with us today

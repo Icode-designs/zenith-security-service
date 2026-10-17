@@ -16,20 +16,20 @@ const HomeHeroContent = () => {
   return (
     <StyledHomeHeroContent>
       <article>
-        <h1>US-based Multinational Security Services Company</h1>
+        <h1>Security Guard Services in Los Angeles & Southern California</h1>
         <p>
-          Affordable, reliable, and trained security guards for fire watch,
-          hospitals, businesses, and hotels.
+          Affordable, licensed armed and unarmed security guards for fire
+          watch, hospitals, construction sites, businesses, and hotels.
         </p>
         <StyledLink $variant="primary" href="/contact">
-          <p>{"let's get started"}</p>
+          <p>get a free quote</p>
         </StyledLink>
       </article>
       <FloatingDiv $bottom={pxTorem(122)} $right={pxTorem(20)}>
-        <p>Professional and dependable</p>
+        <p>BSIS licensed: PPO #122193</p>
       </FloatingDiv>{" "}
       <FloatingDiv $bottom={pxTorem(45)} $left={pxTorem(20)}>
-        <p>Verified and highly trained guards</p>
+        <p>Background-checked guards</p>
       </FloatingDiv>{" "}
       <HomeImgBox>
         <div></div>
@@ -38,7 +38,7 @@ const HomeHeroContent = () => {
             src={commercialSecurity.src}
             height={189}
             width={189}
-            alt="Commercial security guard"
+            alt="Zenith security guards checking in a driver at a warehouse gate"
             priority
           />
           <p>Commercial security</p>
@@ -48,7 +48,7 @@ const HomeHeroContent = () => {
             src={armedSecurity.src}
             height={189}
             width={189}
-            alt="Armed security guard"
+            alt="Zenith security team outside a hospital"
             priority
           />
           <p>Armed guards</p>
@@ -58,10 +58,10 @@ const HomeHeroContent = () => {
             src={fireService.src}
             height={189}
             width={189}
-            alt="Fire watch service"
+            alt="Zenith fire watch guard completing a fire watch log"
             priority
           />
-          <p>Fire service</p>
+          <p>Fire watch</p>
         </div>
         <div></div>
       </HomeImgBox>

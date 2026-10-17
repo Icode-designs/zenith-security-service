@@ -32,6 +32,18 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
+  // Old service URLs (/services/service/:id) moved to /services/:id.
+  // Permanent redirect keeps indexed links and shared URLs working.
+  async redirects() {
+    return [
+      {
+        source: "/services/service/:serviceId",
+        destination: "/services/:serviceId",
+        permanent: true,
+      },
+    ];
+  },
+
   // Security headers for better SEO and security
   async headers() {
     return [

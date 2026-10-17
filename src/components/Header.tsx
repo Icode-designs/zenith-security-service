@@ -2,7 +2,6 @@
 import { StyledHeader } from "@/styles/components/Header.styles";
 import React, { useContext } from "react";
 import Logo from "./ui/Logo";
-import useMedia from "@/hooks/useMedia";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { BsFillTelephoneOutboundFill } from "react-icons/bs";
 import { FlexBox, StyledLink } from "@/styles/components/Ui.styles";
@@ -10,11 +9,10 @@ import Link from "next/link";
 import { NAV_CONTEXT } from "@/providers/NavProvider";
 
 const Header = () => {
-  const isTablet = useMedia("TABLET");
   const navCtx = useContext(NAV_CONTEXT);
   if (!navCtx) return null;
 
-  const { toggleNav } = navCtx;
+  const { toggleNav, isOpen } = navCtx;
 
   return (
     <StyledHeader>
@@ -24,9 +22,6 @@ const Header = () => {
         <nav aria-label="Main navigation">
           <ul>
             <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
               <Link href="/about">About Zenith</Link>
             </li>
             <li>
@@ -34,6 +29,9 @@ const Header = () => {
             </li>
             <li>
               <Link href="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link href="/faq">FAQ</Link>
             </li>
           </ul>
         </nav>
@@ -46,23 +44,20 @@ const Header = () => {
             <FlexBox $gap={16}>
               {" "}
               <BsFillTelephoneOutboundFill aria-hidden="true" />
-              {isTablet && <p>(323) 952-1521</p>}
+              <p className="phone-text">(323) 952-1521</p>
             </FlexBox>
           </a>
-          {!isTablet && (
-            <button
-              onClick={toggleNav}
-              aria-label="Open navigation menu"
-              aria-expanded={false}
-            >
-              <HiOutlineMenuAlt3 aria-hidden="true" />
-            </button>
-          )}
-          {isTablet && (
-            <StyledLink $variant="primary" href="/contact">
-              contact us
-            </StyledLink>
-          )}
+          <button
+            className="menu-btn"
+            onClick={toggleNav}
+            aria-label="Open navigation menu"
+            aria-expanded={isOpen}
+          >
+            <HiOutlineMenuAlt3 aria-hidden="true" />
+          </button>
+          <StyledLink className="contact-btn" $variant="primary" href="/contact">
+            contact us
+          </StyledLink>
         </FlexBox>
       </div>
     </StyledHeader>

@@ -42,7 +42,23 @@ export const StyledHeader = styled.header<{ $isOpen?: boolean }>`
     display: none;
   }
 
+  /* Visibility by breakpoint (was done in JS, which hid these from crawlers) */
+  .phone-text,
+  .contact-btn {
+    display: none;
+  }
+
   @media ${QUERY.TABLET} {
+    .menu-btn {
+      display: none;
+    }
+    .phone-text {
+      display: block;
+    }
+    .contact-btn {
+      display: flex;
+    }
+
     > div {
       padding: ${pxTorem(12)} ${pxTorem(44)};
       background: rgba(255, 255, 255, 0.1);

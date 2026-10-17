@@ -8,6 +8,8 @@ import Logo from "./ui/Logo";
 import { StyledLink } from "@/styles/components/Ui.styles";
 import Link from "next/link";
 import { SERVICETYPE } from "@/utils/data";
+import { LOCATIONS } from "@/utils/locations";
+import { PPO_LICENSE } from "@/utils/company";
 
 interface Props {
   services: SERVICETYPE[];
@@ -37,7 +39,7 @@ const Footer = ({ services }: Props) => {
           <ul>
             {services.map((service, i) => (
               <li key={i}>
-                <StyledLink href={`/services/service/${service.id}`}>
+                <StyledLink href={`/services/${service.id}`}>
                   {service.name}
                 </StyledLink>
               </li>
@@ -61,8 +63,21 @@ const Footer = ({ services }: Props) => {
               <Link href="/blog">Blog</Link>
             </li>
             <li>
+              <Link href="/faq">FAQ</Link>
+            </li>
+            <li>
               <Link href="/contact">Contact us</Link>
             </li>
+          </ul>
+        </div>
+        <div>
+          <h3>Service areas</h3>
+          <ul>
+            {LOCATIONS.map((location) => (
+              <li key={location.slug}>
+                <Link href={`/${location.slug}`}>{location.city}, CA</Link>
+              </li>
+            ))}
           </ul>
         </div>
       </StyledFooterContent>
@@ -73,8 +88,15 @@ const Footer = ({ services }: Props) => {
             <FaFacebookSquare />
             <FaTwitter />
           </FlexBox> */}
+          <div className="legal">
+            <span>BSIS {PPO_LICENSE}</span>
+            {" | "}
+            <Link href="/terms-and-conditions">Terms and Conditions</Link>
+            {" | "}
+            <Link href="/privacy-policy">Privacy Policy</Link>
+          </div>
           <p>
-            © 2025 Zenith Protective Services Inc. | All Rights Reserved |
+            © {new Date().getFullYear()} Zenith Protective Services Inc. | All Rights Reserved |
             Professional Security Solutions 24/7
           </p>
         </div>

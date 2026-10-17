@@ -8,9 +8,12 @@ import { MdOutlineArticle } from "react-icons/md";
 import React from "react";
 
 export const metadata = {
-  title: "Blog | Zenith Protective Services",
+  title: {
+    absolute: "Security Guard Blog: Tips for California Businesses | Zenith",
+  },
   description:
-    "Stay up to date with the latest security trends, company updates, and expert advice from the team at Zenith Protective Services.",
+    "Practical security advice for California businesses: CCTV, access control, construction sites, mobile patrols, and wildfire and earthquake readiness.",
+  alternates: { canonical: "/blog" },
 };
 
 export const revalidate = 60; // Revalidate every 60 seconds

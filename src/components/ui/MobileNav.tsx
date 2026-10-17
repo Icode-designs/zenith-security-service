@@ -23,9 +23,6 @@ const MobileNav = () => {
         </button>
         <ul>
           <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
             <Link href="/about">About Zenith</Link>
           </li>
           <li>
@@ -33,6 +30,9 @@ const MobileNav = () => {
           </li>
           <li>
             <Link href="/blog">Blog</Link>
+          </li>
+          <li>
+            <Link href="/faq">FAQ</Link>
           </li>
           <li>
             <StyledLink href="/contact" $variant="primary">

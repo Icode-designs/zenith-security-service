@@ -36,9 +36,10 @@ emailjs.init({
 
 interface Props {
   services: SERVICETYPE[];
+  id?: string;
 }
 
-const ContactForm = ({ services }: Props) => {
+const ContactForm = ({ services, id }: Props) => {
   const [selectedValue, setSelectedValue] = useState(services[0]?.name || "");
 
   useEffect(() => {
@@ -65,6 +66,8 @@ const ContactForm = ({ services }: Props) => {
     const lastName = formData.get("last-name") as string;
     const email = formData.get("email") as string;
     const phone = formData.get("tel") as string;
+    const company = (formData.get("company-name") as string) ?? "";
+    const location = (formData.get("address") as string) ?? "";
     const service = formData.get("service") as string;
     const message = formData.get("message") as string;
 
@@ -76,17 +79,22 @@ const ContactForm = ({ services }: Props) => {
       await emailjs.sendForm("service_6xpf76g", "template_bvzl7eh", form);
       console.log("EmailJS success: Email sent");
 
-      // Step 2: Submit to backend (Supabase)
-      const submission = await createSubmission({
-        name: `${firstName} ${lastName}`.trim(),
-        email,
-        phone: phone.trim() || null, // nullable if empty
-        service,
-        message,
-        status: "new",
-      });
-
-      console.log("Submission saved:", submission.id);
+      // Step 2: Save a copy to Supabase. The email has already gone out, so a
+      // database failure is logged but doesn't show the visitor an error.
+      try {
+        await createSubmission({
+          name: `${firstName} ${lastName}`.trim(),
+          email,
+          phone: phone.trim() || null, // nullable if empty
+          company: company.trim() || null,
+          location: location.trim() || null,
+          service,
+          message,
+          status: "new",
+        });
+      } catch (dbError) {
+        console.error("Submission not saved to database:", dbError);
+      }
 
       // Success: Reset form and show success message
       setSubmitStatus("success");
@@ -104,9 +112,9 @@ const ContactForm = ({ services }: Props) => {
   };
 
   return (
-    <SectionSwitcher>
+    <SectionSwitcher id={id}>
       <StyledForm onSubmit={handleSubmit}>
-        <h3>Get Professional Security Services Today</h3>
+        <h2 className="form-heading">Get Professional Security Services Today</h2>
 
         {submitStatus === "error" && (
           <StyledError role="alert" aria-live="assertive">

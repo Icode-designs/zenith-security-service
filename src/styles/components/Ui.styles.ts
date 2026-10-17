@@ -178,6 +178,20 @@ export const StyledForm = styled.form`
   padding: ${pxTorem(37)} ${pxTorem(24)};
   background-color: var(--col-100);
   margin: ${pxTorem(40)} auto;
+
+  /* h2 for correct heading order, sized like the previous h3 */
+  .form-heading {
+    font-size: ${pxTorem(18)};
+    line-height: normal;
+
+    @media ${QUERY.TABLET} {
+      font-size: ${pxTorem(20)};
+    }
+
+    @media ${QUERY.DESKTOP} {
+      font-size: ${pxTorem(24)};
+    }
+  }
 `;
 export const StyledInput = styled.input`
   border-radius: ${pxTorem(12)};
@@ -245,6 +259,12 @@ export const StyledCTA = styled.section`
     align-items: center;
     article {
       max-width: ${pxTorem(450)};
+
+      /* h2 for correct heading order, sized like the previous h4 */
+      .cta-heading {
+        font-size: ${pxTorem(16)};
+        line-height: ${pxTorem(32)};
+      }
     }
     button {
       &:hover {

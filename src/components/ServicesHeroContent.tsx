@@ -7,12 +7,11 @@ const ServicesHeroContent = () => {
   return (
     <StyledServiceContent>
       <article>
-        <h1>Our Security Services</h1>
+        <h1>Our Security Guard Services in California</h1>
         <p>
-          {" "}
-          0ur full range of security services is built to safeguard people,
-          property, and businesses. Discover our specialized guard services
-          tailored to your needs.
+          Licensed armed and unarmed security guards for construction sites,
+          hospitals, hotels, commercial properties, and fire watch, available
+          24/7 across Los Angeles, the Inland Empire, and Antelope Valley.
         </p>
       </article>
       <div>
@@ -20,7 +19,7 @@ const ServicesHeroContent = () => {
           src={image.src}
           width={1500}
           height={1000}
-          alt="Professional security guard on duty"
+          alt="Zenith security guard on duty"
           priority
         />
       </div>

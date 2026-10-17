@@ -11,14 +11,18 @@ const HomeIntro = () => {
       <StyledIntro>
         <FlexBox $variant="secondary">
           <article>
-            <h2>we understand that safety is a top priority</h2>
+            <h2>Armed & Unarmed Security Guards, Available 24/7</h2>
             <p>
-              At Zenith Protective Services, safety is our top priority. We
-              provide highly trained, licensed security professionals armed or
-              unarmed to protect your property, staff, and customers. From fire
-              watch and hospital security to commercial and hotel protection,
-              our team delivers reliable, cost-effective security solutions
-              24/7.
+              Zenith Protective Services is a BSIS licensed security guard
+              company (PPO #122193) based in Hawthorne, California. Our armed
+              and unarmed security guards protect your property, staff, and
+              customers, from fire watch and hospital security to construction
+              sites, commercial buildings, and hotels.
+            </p>
+            <p>
+              Every guard holds a California guard card and passes a background
+              check, and we staff posts around the clock across Los Angeles
+              County, the Inland Empire, and Antelope Valley.
             </p>
 
             <StyledLink href="/contact" $variant="secondary">
@@ -28,7 +32,7 @@ const HomeIntro = () => {
           <div>
             <Image
               src={cctv.src}
-              alt="CCTV security monitoring"
+              alt="Zenith security officer monitoring CCTV cameras"
               width={600}
               height={400}
               priority

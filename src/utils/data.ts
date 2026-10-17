@@ -23,6 +23,10 @@ export interface SERVICETYPE {
   FAQ: FAQ[];
 }
 
+// Testimonials section is hidden until real client testimonials are in.
+// To show it again: replace the entries below with real quotes and set this to true.
+export const SHOW_TESTIMONIALS = false;
+
 export const TESTIMONIALS = [
   {
     quote:

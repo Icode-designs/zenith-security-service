@@ -33,7 +33,7 @@ const ServiceCard = ({ id, img, title, description }: Props) => {
         <h3>{title}</h3>
         <p>{trimTextLength(description)}</p>
       </article>
-      <StyledLink href={`/services/service/${id}`} $variant="tertiary">
+      <StyledLink href={`/services/${id}`} $variant="tertiary">
         <p>find out more</p>
         <FaArrowRightLong aria-hidden="true" />
       </StyledLink>

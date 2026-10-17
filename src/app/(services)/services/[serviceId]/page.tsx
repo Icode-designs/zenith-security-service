@@ -5,6 +5,24 @@ import FAQ from "@/components/ui/FAQ";
 import { StyledMainWrapper } from "@/styles/components/Ui.styles";
 import { getServiceById } from "@/lib/supabase/services";
 import React from "react";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ serviceId: string }>;
+}): Promise<Metadata> {
+  const { serviceId } = await params;
+  const service = await getServiceById(serviceId);
+  if (!service) return { title: "Service Not Found" };
+
+  return {
+    title: service.name,
+    description: service.description,
+    alternates: { canonical: `/services/${service.id}` },
+  };
+}
 
 const Page = async ({ params }: { params: Promise<{ serviceId: string }> }) => {
   const resolvedParams = await params;
@@ -12,11 +30,7 @@ const Page = async ({ params }: { params: Promise<{ serviceId: string }> }) => {
   const service = await getServiceById(id);
 
   if (!service) {
-    return (
-      <StyledMainWrapper>
-        <h2>service not found</h2>
-      </StyledMainWrapper>
-    );
+    notFound();
   }
 
   return (

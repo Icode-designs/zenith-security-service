@@ -5,6 +5,8 @@ export type Submission = {
   name: string;
   email: string;
   phone: string | null;
+  company: string | null;
+  location: string | null;
   service: string;
   message: string;
   status: "new" | "reviewed" | "contacted" | "closed";
@@ -18,6 +20,8 @@ function mapRow(row: any): Submission {
     name: row.name,
     email: row.email,
     phone: row.phone,
+    company: row.company ?? null,
+    location: row.location ?? null,
     service: row.service,
     message: row.message,
     status: row.status,
@@ -31,28 +35,27 @@ function mapRow(row: any): Submission {
  */
 export async function createSubmission(
   data: Omit<Submission, "id" | "submittedAt">,
-): Promise<Submission> {
+): Promise<void> {
   const supabase = getSupabase() as any;
 
-  const { data: result, error } = await supabase
-    .from("form_submissions")
-    .insert({
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      service: data.service,
-      message: data.message,
-      status: data.status,
-      submitted_at: new Date().toISOString(),
-    })
-    .select()
-    .single();
+  // Insert only — no .select() afterwards. Anonymous visitors are allowed to
+  // INSERT but not SELECT (RLS), so reading the row back makes Supabase reject
+  // and roll back the whole insert.
+  const { error } = await supabase.from("form_submissions").insert({
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+    company: data.company,
+    location: data.location,
+    service: data.service,
+    message: data.message,
+    status: data.status,
+    submitted_at: new Date().toISOString(),
+  });
 
   if (error) {
     throw new Error(`Failed to create submission: ${error.message}`);
   }
-
-  return mapRow(result);
 }
 
 /** Fetch all submissions ordered newest first */

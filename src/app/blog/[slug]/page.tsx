@@ -39,8 +39,9 @@ export async function generateMetadata({
   if (!post) return { title: "Post Not Found" };
 
   return {
-    title: `${post.title} | Zenith Protective Services Blog`,
+    title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${slugify(post.title)}` },
   };
 }
 

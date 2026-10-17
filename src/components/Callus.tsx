@@ -8,13 +8,13 @@ function Callus() {
     <StyledCTA>
       <FlexBox $variant="secondary">
         <article>
-          <h4>
+          <h2 className="cta-heading">
             Call us today at (323) 952-1521 to schedule a free, no-obligation
             consultation with a Zenith security expert.
-          </h4>
+          </h2>
           <p>
-            We’ll see if our team is good fit for you and brainstorm some ways
-            we can help your business thrive.
+            We’ll assess your site, recommend armed or unarmed coverage, and
+            give you a free quote.
           </p>
         </article>
 

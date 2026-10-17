@@ -18,17 +18,15 @@ const Services = ({ alternate, services }: Props) => {
         <article>
           {!alternate ? (
             <>
-              <h2>our specialized security services</h2>
+              <h2>Our Security Guard Services</h2>
               <p>
-                At Zenith Protective Services, our full range of security
-                services is built to safeguard people, property, and businesses.
-                Discover our specialized guard services tailored to your needs.
+                From armed guards to fire watch, choose the security guard
+                service that fits your site. Every post is staffed by licensed,
+                background-checked officers and can run 24/7.
               </p>
             </>
           ) : (
-            <h2>
-              Discover Our Specialized Guard Services Tailored to Your Needs
-            </h2>
+            <h2>Choose the Right Security Guard Service for Your Site</h2>
           )}
         </article>
         <StyledServiceCardGrid>

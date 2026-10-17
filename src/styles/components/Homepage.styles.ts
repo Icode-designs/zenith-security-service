@@ -436,6 +436,12 @@ export const StyledImgGrid = styled.div`
       color: var(--col-100);
       width: 90%;
       margin: 0 auto;
+
+      /* h3 for correct heading order, sized like the previous h4 */
+      h3 {
+        font-size: ${pxTorem(16)};
+        line-height: ${pxTorem(32)};
+      }
     }
   }
 `;

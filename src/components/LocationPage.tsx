@@ -47,14 +47,18 @@ const LocationPage = async ({ location }: Props) => {
           name: `${name}, CA`,
         })),
       },
-      {
-        "@type": "FAQPage",
-        mainEntity: location.faqs.map((faq) => ({
-          "@type": "Question",
-          name: faq.question,
-          acceptedAnswer: { "@type": "Answer", text: faq.answer },
-        })),
-      },
+      ...(location.faqs.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: location.faqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.question,
+                acceptedAnswer: { "@type": "Answer", text: faq.answer },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 
@@ -69,8 +73,13 @@ const LocationPage = async ({ location }: Props) => {
         <StyledLocationHero>
           <article>
             <h1>
-              {location.h1}{" "}
-              <span>{location.h1Sub}</span>
+              {location.h1}
+              {location.h1Sub && (
+                <>
+                  {" "}
+                  <span>{location.h1Sub}</span>
+                </>
+              )}
             </h1>
             <p>{location.intro}</p>
             <p className="tagline">{location.tagline}</p>
@@ -95,9 +104,19 @@ const LocationPage = async ({ location }: Props) => {
       <SectionSwitcher>
         <StyledLocalIntro>
           <h2>{location.localTitle}</h2>
-          {location.localParagraphs.map((paragraph, i) => (
+          {location.localParagraphs?.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
           ))}
+          {location.localItems && location.localItems.length > 0 && (
+            <ol className="items">
+              {location.localItems.map((item) => (
+                <li key={item.title}>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </li>
+              ))}
+            </ol>
+          )}
         </StyledLocalIntro>
       </SectionSwitcher>
 
@@ -125,28 +144,37 @@ const LocationPage = async ({ location }: Props) => {
         </StyledWhy>
       </SectionSwitcher>
 
-      <SectionSwitcher>
-        <StyledLocationFAQ>
-          <h2>{location.faqTitle}</h2>
-          <ul>
-            {location.faqs.map((faq) => (
-              <li key={faq.question}>
-                <h3>{faq.question}</h3>
-                <p>{faq.answer}</p>
-              </li>
-            ))}
-          </ul>
-        </StyledLocationFAQ>
-      </SectionSwitcher>
+      {location.faqs.length > 0 && (
+        <SectionSwitcher>
+          <StyledLocationFAQ>
+            <h2>{location.faqTitle}</h2>
+            <ul>
+              {location.faqs.map((faq) => (
+                <li key={faq.question}>
+                  <h3>{faq.question}</h3>
+                  <p>{faq.answer}</p>
+                </li>
+              ))}
+            </ul>
+          </StyledLocationFAQ>
+        </SectionSwitcher>
+      )}
 
       <SectionSwitcher>
         <StyledLocationCTA>
           <h2>{location.finalCtaTitle}</h2>
           <p>{location.finalCtaBody}</p>
-          <StyledLink $variant="primary" href={PHONE_TEL}>
-            Call {PHONE_DISPLAY}
-          </StyledLink>
-          <p className="zips">{location.zipLine}</p>
+          <div className="ctas">
+            <StyledLink $variant="primary" href={PHONE_TEL}>
+              Call {PHONE_DISPLAY}
+            </StyledLink>
+            {location.finalCtaButton && (
+              <StyledLink $variant="secondary" href="#quote">
+                {location.finalCtaButton}
+              </StyledLink>
+            )}
+          </div>
+          {location.zipLine && <p className="zips">{location.zipLine}</p>}
         </StyledLocationCTA>
       </SectionSwitcher>
 

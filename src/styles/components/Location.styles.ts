@@ -95,6 +95,46 @@ export const StyledLocalIntro = styled.div`
     line-height: 1.7;
     color: var(--col-700);
   }
+
+  /* Numbered service blocks */
+  .items {
+    list-style: none;
+    counter-reset: item;
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, ${pxTorem(340)}), 1fr)
+    );
+    gap: ${pxTorem(16)};
+    margin-top: ${pxTorem(8)};
+
+    li {
+      counter-increment: item;
+      display: grid;
+      align-content: start;
+      gap: ${pxTorem(8)};
+      padding: ${pxTorem(24)};
+      border-radius: ${pxTorem(12)};
+      border: 1px solid var(--col-600);
+      border-top: ${pxTorem(3)} solid var(--col-400);
+    }
+
+    /* An odd last block spans the full row instead of sitting alone */
+    li:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+
+    h3 {
+      text-transform: none;
+      font-size: ${pxTorem(19)};
+      line-height: 1.35;
+
+      &::before {
+        content: counter(item) ". ";
+        color: var(--col-400);
+      }
+    }
+  }
 `;
 
 // "Why Zenith" + service area, on navy
@@ -197,6 +237,13 @@ export const StyledLocationCTA = styled.div`
   p {
     max-width: ${pxTorem(560)};
     line-height: 1.6;
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: ${pxTorem(12)};
   }
 
   .zips {
